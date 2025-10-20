@@ -1,0 +1,17 @@
+.patoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px; 
+}
+
+.loadingText,
+.errorText {
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.errorText {
+  color: var(--color-danger);
+}

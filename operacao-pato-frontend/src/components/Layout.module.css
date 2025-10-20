@@ -1,0 +1,64 @@
+.layoutContainer {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: var(--color-bg-medium);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-bg-light);
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-bottom: 32px;
+}
+
+.logo span {
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--color-text-secondary);
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.navList a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.navList a:hover {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-primary);
+}
+
+.navList a.active {
+  background-color: var(--color-accent);
+  color: var(--color-bg-dark);
+}
+
+.content {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto; 
+}
