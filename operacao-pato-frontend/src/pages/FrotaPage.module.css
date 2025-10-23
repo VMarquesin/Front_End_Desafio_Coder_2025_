@@ -1,0 +1,70 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.registerButton {
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--color-bg-dark);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.registerButton:hover {
+  filter: brightness(1.1);
+}
+
+.frotaTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-bg-medium);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-bg-light);
+}
+
+.frotaTable th,
+.frotaTable td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-bg-light);
+}
+
+.frotaTable th {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.frotaTable td {
+  color: var(--color-text-primary);
+  font-size: 15px;
+}
+
+.frotaTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.frotaTable tbody tr:hover {
+  background-color: var(--color-bg-light);
+}
+
+.frotaTable .serial {
+  color: var(--color-accent);
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.loadingText {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 40px;
+}

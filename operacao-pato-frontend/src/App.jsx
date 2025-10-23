@@ -4,6 +4,7 @@ import DashboardPage from './pages/DashboardPage'
 import PatopediaPage from './pages/PatopediaPage'
 import PatoDetailPage from './pages/PatoDetailPage'
 import MissionControlPage from './pages/MissionControlPage'
+import FrotaPage from './pages/FrotaPage'
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         
         {/* Rota do Combate (Módulo 3) */}
         <Route path="/missao/:patoId" element={<MissionControlPage />} />
+
+        <Route path="/frota" element={<FrotaPage />} />
       </Routes>
     </Layout>
   )

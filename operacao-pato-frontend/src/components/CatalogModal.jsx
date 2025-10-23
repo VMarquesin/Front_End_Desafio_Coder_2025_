@@ -1,15 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react' // --- IMPORTE O useEffect ---
 import api from '../services/api'
 import styles from './CatalogModal.module.css'
 
-// 'onClose' (para fechar) e 'onPatoCatalogado' (para o mapa para atualizar)
-const CatalogModal = ({ onClose, onPatoCatalogado }) => {
-  // campos do formulário
-  const [droneSerial, setDroneSerial] = useState('')
-  const [droneMarca, setDroneMarca] = useState('')
-  const [droneFabricante, setDroneFabricante] = useState('')
-  const [dronePais, setDronePais] = useState('')
+// --- MOCK DA LISTA DE DRONES (para o <select>) ---
+const MOCK_DRONES_LIST = [
+  { serial_number: "BR-001" },
+  { serial_number: "USA-007" },
+  { serial_number: "GER-003" },
+];
+// ---------------------------------
 
+const CatalogModal = ({ onClose, onPatoCatalogado }) => {
+  // --- REMOVIDOS ---
+  // const [droneMarca, setDroneMarca] = useState('')
+  // const [droneFabricante, setDroneFabricante] = useState('')
+  // const [dronePais, setDronePais] = useState('')
+  
+  // --- MANTIDO ---
+  const [droneSerial, setDroneSerial] = useState('') // Agora será o <select>
+  
+  // --- NOVO STATE PARA A LISTA ---
+  const [listaDeDrones, setListaDeDrones] = useState([])
+  const [isLoadingDrones, setIsLoadingDrones] = useState(true)
+
+  // ... (states de altura, peso, etc. continuam iguais)
   const [alturaVal, setAlturaVal] = useState('')
   const [alturaUnidade, setAlturaUnidade] = useState('cm')
   
@@ -36,19 +50,39 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
+
+  // --- NOVO useEffect PARA BUSCAR OS DRONES ---
+  useEffect(() => {
+    const carregarDrones = async () => {
+      try {
+        // --- QUANDO A API ESTIVER PRONTA ---
+        // const response = await api.get('/drones')
+        // setListaDeDrones(response.data)
+
+        // --- POR ENQUANTO, USAMOS O MOCK ---
+        setListaDeDrones(MOCK_DRONES_LIST)
+
+      } catch (err) {
+        console.error("Falha ao carregar drones", err)
+        setError("Não foi possível carregar a lista de drones.")
+      } finally {
+        setIsLoadingDrones(false)
+      }
+    }
+    carregarDrones()
+  }, []) // O [] vazio garante que isso rode só uma vez, quando o modal abrir
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
     setError(null)
 
-    // 1. objeto JSON
+    // 1. Montar o objeto JSON (AGORA MUITO MAIS SIMPLES)
     const dadosBrutos = {
-      drone_info: {
-        serial: droneSerial,
-        marca: droneMarca,
-        fabricante: droneFabricante,
-        pais_origem: dronePais
-      },
+      // --- CAMPO DE DRONE ATUALIZADO ---
+      drone_serial: droneSerial, // Agora enviamos SÓ o serial
+      
       altura: {
         valor: parseFloat(alturaVal),
         unidade: alturaUnidade
@@ -72,18 +106,18 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
       batimentos_cardiacos_bpm: (statusHibernacao !== 'desperto' && batimentosBpm) ? parseInt(batimentosBpm) : null,
       quantidade_mutacoes: parseInt(qtdMutacoes),
       super_poder: (statusHibernacao === 'desperto' && superPoderNome) ? {
-                    nome: superPoderNome,
-                    descricao: superPoderDescricao,
-                    classificacao: superPoderClassificacao
-                    } : null   
+          nome: superPoderNome,
+          descricao: superPoderDescricao,
+          classificacao: superPoderClassificacao
+        } : null  
     }
 
-    // 2. API
+    // 2. API (a chamada continua a mesma)
     try {
-      await api.post('/patos', dadosBrutos)
+      await api.post('/patos', dadosBrutos) // O backend vai receber o 'drone_serial'
       alert('Pato Primordial catalogado com sucesso!')
-      onPatoCatalogado() // recarregar no mapa
-      onClose()
+      onPatoCatalogado() 
+      onClose() 
     } catch (err) {
       console.error("Erro ao catalogar Pato:", err)
       setError("Falha ao enviar dados. Verifique o console e a API.")
@@ -102,32 +136,26 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
           </div>
           
           <div className={styles.modalBody}>
-            {/* Seção do Drone */}
+            {/* --- Seção do Drone ATUALIZADA --- */}
             <fieldset>
               <legend>Informações do Drone</legend>
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <label>Nº de Série</label>
-                  <input type="text" value={droneSerial} onChange={e => setDroneSerial(e.target.value)} required />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Marca</label>
-                  <input type="text" value={droneMarca} onChange={e => setDroneMarca(e.target.value)} required />
-                </div>
-              </div>
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <label>Fabricante</label>
-                  <input type="text" value={droneFabricante} onChange={e => setDroneFabricante(e.target.value)} required />
-                </div>
-                <div className={styles.formGroup}>
-                  <label>País de Origem</label>
-                  <input type="text" value={dronePais} onChange={e => setDronePais(e.target.value)} required />
-                </div>
+              <div className={styles.formGroup}>
+                <label>Nº de Série do Drone Responsável</label>
+                <select value={droneSerial} onChange={e => setDroneSerial(e.target.value)} required disabled={isLoadingDrones}>
+                  <option value="">{isLoadingDrones ? "Carregando drones..." : "-- Selecione um Drone --"}</option>
+                  
+                  {/* Loop (map) para criar as opções */}
+                  {listaDeDrones.map(drone => (
+                    <option key={drone.serial_number} value={drone.serial_number}>
+                      {drone.serial_number}
+                    </option>
+                  ))}
+
+                </select>
               </div>
             </fieldset>
 
-            {/* Seção de Medidas Físicas */}
+            {/* Seção de Medidas Físicas (Sem alteração) */}
             <fieldset>
               <legend>Medidas Físicas</legend>
               <div className={styles.formRow}>
@@ -158,9 +186,10 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
               </div>
             </fieldset>
             
-            {/* Seção de Localização */}
+            {/* O resto do formulário (Localização, Status) continua EXATAMENTE O MESMO */}
             <fieldset>
               <legend>Localização (GPS)</legend>
+              {/* ... (campos de cidade, país, lat, lon, precisão) ... */}
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label>Cidade</label>
@@ -201,9 +230,9 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
               </div>
             </fieldset>
 
-            {/* Seção de Status */}
             <fieldset>
               <legend>Status Biológico</legend>
+              {/* ... (campos de status, batimentos, mutações, super-poder) ... */}
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label>Status de Hibernação</label>
@@ -213,7 +242,6 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
                     <option value="desperto">Desperto</option>
                   </select>
                 </div>
-                {/* CONDIÇÃO BATIMENTOS */}
                 {(statusHibernacao === 'em transe' || statusHibernacao === 'hibernacao profunda') && (
                   <div className={styles.formGroup}>
                     <label>Batimentos Cardíacos (bpm)</label>
@@ -221,8 +249,6 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
                   </div>
                 )}
               </div>
-
-                {/* CONDIÇÃO CLASSIFICAÇÃO */}
               {statusHibernacao === 'desperto' && (
                 <div className={styles.superPoderGroup}>
                   <div className={styles.formGroup}>
@@ -231,7 +257,6 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
                   </div>
                   <div className={styles.formGroup}>
                     <label>Super-poder (Descrição)</label>
-                    {/* Textarea é melhor para descrições longas */}
                     <textarea rows="3" value={superPoderDescricao} onChange={e => setSuperPoderDescricao(e.target.value)} placeholder="Ex: Gera descargas elétricas em área."></textarea>
                   </div>
                   <div className={styles.formGroup}>
@@ -240,13 +265,12 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
                   </div>
                 </div>
               )}
-
               <div className={styles.formGroup}>
                 <label>Quantidade de Mutações</label>
                 <input type="number" value={qtdMutacoes} onChange={e => setQtdMutacoes(e.target.value)} required />
               </div>
             </fieldset>
-
+            
             {error && <p className={styles.errorText}>{error}</p>}
           </div>
 
@@ -254,7 +278,7 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
             <button type="button" className={styles.buttonSecondary} onClick={onClose} disabled={isLoading}>
               Cancelar
             </button>
-            <button type="submit" className={styles.buttonPrimary} disabled={isLoading}>
+            <button type="submit" className={styles.buttonPrimary} disabled={isLoading || isLoadingDrones}>
               {isLoading ? 'Catalogando...' : 'Salvar e Catalogar'}
             </button>
           </div>
