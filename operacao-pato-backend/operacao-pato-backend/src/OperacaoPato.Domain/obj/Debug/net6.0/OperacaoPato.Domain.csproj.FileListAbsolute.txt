@@ -1,0 +1,5 @@
+/home/leo/Documentos/Front_End_Desafio_Coder_2025_-main/operacao-pato-backend/operacao-pato-backend/src/OperacaoPato.Domain/obj/Debug/net6.0/OperacaoPato.Domain.csproj.AssemblyReference.cache
+/home/leo/Documentos/Front_End_Desafio_Coder_2025_-main/operacao-pato-backend/operacao-pato-backend/src/OperacaoPato.Domain/obj/Debug/net6.0/OperacaoPato.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/leo/Documentos/Front_End_Desafio_Coder_2025_-main/operacao-pato-backend/operacao-pato-backend/src/OperacaoPato.Domain/obj/Debug/net6.0/OperacaoPato.Domain.AssemblyInfoInputs.cache
+/home/leo/Documentos/Front_End_Desafio_Coder_2025_-main/operacao-pato-backend/operacao-pato-backend/src/OperacaoPato.Domain/obj/Debug/net6.0/OperacaoPato.Domain.AssemblyInfo.cs
+/home/leo/Documentos/Front_End_Desafio_Coder_2025_-main/operacao-pato-backend/operacao-pato-backend/src/OperacaoPato.Domain/obj/Debug/net6.0/OperacaoPato.Domain.csproj.CoreCompileInputs.cache

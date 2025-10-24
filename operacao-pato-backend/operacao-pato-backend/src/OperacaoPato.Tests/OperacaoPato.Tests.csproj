@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>OperacaoPato.Tests</RootNamespace>
+    <AssemblyName>OperacaoPato.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OperacaoPato.Domain\OperacaoPato.Domain.csproj" />
+    <ProjectReference Include="..\OperacaoPato.Application\OperacaoPato.Application.csproj" />
+    <ProjectReference Include="..\OperacaoPato.Infrastructure\OperacaoPato.Infrastructure.csproj" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+  </ItemGroup>
+
+</Project>

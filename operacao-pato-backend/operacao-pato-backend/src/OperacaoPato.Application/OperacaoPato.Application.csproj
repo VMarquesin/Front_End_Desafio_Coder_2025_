@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>OperacaoPato.Application</RootNamespace>
+    <AssemblyName>OperacaoPato.Application</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OperacaoPato.Domain\OperacaoPato.Domain.csproj" />
+    <ProjectReference Include="..\OperacaoPato.Infrastructure\OperacaoPato.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
