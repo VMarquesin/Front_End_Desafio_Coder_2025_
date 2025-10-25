@@ -9,6 +9,13 @@ namespace OperacaoPato.Backend.Shared.Exceptions
             ErrorMessages = errors;
         }
 
-        
+        public ErrorOnValidationException(string error)
+        {
+            ErrorMessages = new List<string>
+            {
+                error
+            };
+        }
+
     }
 }

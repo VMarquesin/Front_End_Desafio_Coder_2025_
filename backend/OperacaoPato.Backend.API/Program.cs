@@ -5,6 +5,8 @@ using OperacaoPato.Backend.Application.Interfaces;
 using OperacaoPato.Backend.Infrastructure.Repositories;
 using OperacaoPato.Backend.Application.Validators;
 using OperacaoPato.Backend.Application.UseCases.CadastrarDrone;
+using OperacaoPato.Backend.Application.UseCases.CadastrarPato;
+using OperacaoPato.Backend.Application.UseCases.ObterTodosPatos;
 using OperacaoPato.Backend.API.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,11 +44,17 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IDroneService, DroneService>();
 builder.Services.AddScoped<IValidator<DroneDto>, DroneDtoValidator>();
 
+// Validators (já existente)
+builder.Services.AddScoped<IValidator<PatoDto>, PatoDtoValidator>();
+
 // Use Cases
 builder.Services.AddScoped<CadastrarDroneUseCase>();
+builder.Services.AddScoped<ICadastrarPatoUseCase, CadastrarPatoUseCase>();
+builder.Services.AddScoped<IObterTodosPatosUseCase, ObterTodosPatosUseCase>();
 
 // Infra: Repository em memória
 builder.Services.AddSingleton<IDroneRepository, InMemoryDroneRepository>();
+builder.Services.AddSingleton<IPatoRepository, InMemoryPatoRepository>();
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
