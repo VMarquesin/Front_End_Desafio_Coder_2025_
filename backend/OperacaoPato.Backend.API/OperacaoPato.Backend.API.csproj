@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OperacaoPato.Backend.Application\OperacaoPato.Backend.Application.csproj" />
+    <ProjectReference Include="..\OperacaoPato.Backend.Infrastructure\OperacaoPato.Backend.Infrastructure.csproj" />
+    <ProjectReference Include="..\OperacaoPato.Domain\OperacaoPato.Domain.csproj" />
+    <ProjectReference Include="..\OperacaoPato.Backend.Shared\OperacaoPato.Backend.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,82 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C302DD90-50C2-4B7D-9758-7C336DAA7153}|OperacaoPato.Backend.Tests\\OperacaoPato.Backend.Tests.csproj|c:\\users\\micro\\documents\\dsinchallenge\\front_end_desafio_coder_2025_\\backend\\operacaopato.backend.tests\\operacaopato.backend.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C302DD90-50C2-4B7D-9758-7C336DAA7153}|OperacaoPato.Backend.Tests\\OperacaoPato.Backend.Tests.csproj|solutionrelative:operacaopato.backend.tests\\operacaopato.backend.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66C219EC-26CF-43BF-8B39-6AF29E429FA7}|OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj|c:\\users\\micro\\documents\\dsinchallenge\\front_end_desafio_coder_2025_\\backend\\operacaopato.backend.domain\\operacaopato.backend.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{66C219EC-26CF-43BF-8B39-6AF29E429FA7}|OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj|solutionrelative:operacaopato.backend.domain\\operacaopato.backend.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OperacaoPato.Backend.Domain.csproj",
+              "DocumentMoniker": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj",
+              "RelativeDocumentMoniker": "OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj",
+              "ToolTip": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj",
+              "RelativeToolTip": "OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-25T00:16:59.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Microsoft.CSharp.Core.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets",
+              "ViewState": "AgIAAD4AAAAAAAAAAAD4v1QAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-10-25T00:16:50.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OperacaoPato.Backend.Tests.csproj",
+              "DocumentMoniker": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Tests\\OperacaoPato.Backend.Tests.csproj",
+              "RelativeDocumentMoniker": "OperacaoPato.Backend.Tests\\OperacaoPato.Backend.Tests.csproj",
+              "ToolTip": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Tests\\OperacaoPato.Backend.Tests.csproj",
+              "RelativeToolTip": "OperacaoPato.Backend.Tests\\OperacaoPato.Backend.Tests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-25T00:16:37.458Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

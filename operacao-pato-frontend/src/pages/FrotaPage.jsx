@@ -29,9 +29,10 @@ const FrotaPage = () => {
 
       // --- POR ENQUANTO, USAMOS O MOCK ---
       // Simula um delay de rede
-      await new Promise(res => setTimeout(res, 300));
-      setDrones(MOCK_DRONES)
-      
+      const listDrones = (await api.get('/drones')).data;
+      console.log(listDrones)
+      setDrones(listDrones)
+     
     } catch (err) {
       console.error("Falha ao carregar frota de drones", err)
     } finally {
@@ -91,11 +92,11 @@ const FrotaPage = () => {
             </tr>
           ) : (
             drones.map(drone => (
-              <tr key={drone.serial_number}>
-                <td className={styles.serial}>{drone.serial_number}</td>
+              <tr key={drone.numeroSerie}>
+                <td className={styles.serial}>{drone.numeroSerie}</td>
                 <td>{drone.marca}</td>
                 <td>{drone.fabricante}</td>
-                <td>{drone.pais_origem}</td>
+                <td>{drone.paisOrigem}</td>
               </tr>
             ))
           )}

@@ -1,0 +1,435 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.API\\OperacaoPato.Backend.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.API\\OperacaoPato.Backend.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.API\\OperacaoPato.Backend.API.csproj",
+        "projectName": "OperacaoPato.Backend.API",
+        "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.API\\OperacaoPato.Backend.API.csproj",
+        "packagesPath": "C:\\Users\\Micro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Micro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj": {
+                "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj"
+              },
+              "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Infrastructure\\OperacaoPato.Backend.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Infrastructure\\OperacaoPato.Backend.Infrastructure.csproj"
+              },
+              "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Shared\\OperacaoPato.Backend.Shared.csproj": {
+                "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Shared\\OperacaoPato.Backend.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj",
+        "projectName": "OperacaoPato.Backend.Application",
+        "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj",
+        "packagesPath": "C:\\Users\\Micro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Micro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj": {
+                "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj"
+              },
+              "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Shared\\OperacaoPato.Backend.Shared.csproj": {
+                "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Shared\\OperacaoPato.Backend.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj",
+        "projectName": "OperacaoPato.Backend.Domain",
+        "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj",
+        "packagesPath": "C:\\Users\\Micro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Micro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Infrastructure\\OperacaoPato.Backend.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Infrastructure\\OperacaoPato.Backend.Infrastructure.csproj",
+        "projectName": "OperacaoPato.Backend.Infrastructure",
+        "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Infrastructure\\OperacaoPato.Backend.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Micro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Micro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj": {
+                "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj"
+              },
+              "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj": {
+                "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Domain\\OperacaoPato.Backend.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Shared\\OperacaoPato.Backend.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Shared\\OperacaoPato.Backend.Shared.csproj",
+        "projectName": "OperacaoPato.Backend.Shared",
+        "projectPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Shared\\OperacaoPato.Backend.Shared.csproj",
+        "packagesPath": "C:\\Users\\Micro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Micro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.12, 8.0.12]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

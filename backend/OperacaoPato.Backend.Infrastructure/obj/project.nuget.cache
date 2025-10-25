@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "kJvd9mYev+k=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Micro\\Documents\\DSINChallenge\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Infrastructure\\OperacaoPato.Backend.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Micro\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
+    "C:\\Users\\Micro\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.12\\microsoft.netcore.app.ref.8.0.12.nupkg.sha512",
+    "C:\\Users\\Micro\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.12\\microsoft.windowsdesktop.app.ref.8.0.12.nupkg.sha512",
+    "C:\\Users\\Micro\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.12\\microsoft.aspnetcore.app.ref.8.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

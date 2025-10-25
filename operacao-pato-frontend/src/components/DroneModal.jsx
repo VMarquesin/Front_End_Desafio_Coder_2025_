@@ -20,10 +20,10 @@ const DroneModal = ({ onClose, onDroneCadastrado }) => {
 
     // 1. Montar o objeto JSON para a API /drones
     const droneData = {
-      serial_number: serial,
+      numeroSerie: serial,
       marca: marca,
       fabricante: fabricante,
-      pais_origem: paisOrigem
+      paisOrigem: paisOrigem
     }
 
     // 2. Enviar para a API

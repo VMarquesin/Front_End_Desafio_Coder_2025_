@@ -1,0 +1,12 @@
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\bin\Debug\net8.0\OperacaoPato.Backend.Shared.deps.json
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\bin\Debug\net8.0\OperacaoPato.Backend.Shared.dll
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\bin\Debug\net8.0\OperacaoPato.Backend.Shared.pdb
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\OperacaoPato.Backend.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\OperacaoPato.Backend.Shared.AssemblyInfoInputs.cache
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\OperacaoPato.Backend.Shared.AssemblyInfo.cs
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\OperacaoPato.Backend.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\OperacaoPato.Backend.Shared.sourcelink.json
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\OperacaoPato.Backend.Shared.dll
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\refint\OperacaoPato.Backend.Shared.dll
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\OperacaoPato.Backend.Shared.pdb
+C:\Users\Micro\Documents\DSINChallenge\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Shared\obj\Debug\net8.0\ref\OperacaoPato.Backend.Shared.dll
