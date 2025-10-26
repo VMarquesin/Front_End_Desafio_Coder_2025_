@@ -79,7 +79,6 @@
    cursor: not-allowed;
 }
 
-/* Telas de Loading e Fim de Jogo */
 .loadingContainer {
    text-align: center;
    margin-top: 100px;
@@ -136,7 +135,6 @@
    gap: 16px;
 }
 
-/* botão Tentar Novamente */
 .retryButton {
    padding: 16px;
    font-size: 16px;

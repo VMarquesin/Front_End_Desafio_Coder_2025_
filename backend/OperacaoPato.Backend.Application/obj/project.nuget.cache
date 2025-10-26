@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Lj7/sYHqn0A=",
+  "dgSpecHash": "8NVGnXjuj/Y=",
   "success": true,
-  "projectFilePath": "C:\\ProjetosCS\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj",
+  "projectFilePath": "C:\\Users\\Cleber\\Desktop\\Vinicius\\Conecta\\Front_End_Desafio_Coder_2025_\\backend\\OperacaoPato.Backend.Application\\OperacaoPato.Backend.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\David\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512"
+    "C:\\Users\\Cleber\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512"
   ],
   "logs": []
 }

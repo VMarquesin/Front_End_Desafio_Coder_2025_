@@ -10,6 +10,7 @@ using OperacaoPato.Backend.Application.UseCases.CadastrarPato;
 using OperacaoPato.Backend.Application.UseCases.ObterTodosPatos;
 using OperacaoPato.Backend.API.Filters;
 using OperacaoPato.Backend.Infrastructure.Data;
+using OperacaoPato.Backend.Application.UseCases.ObterPatoPorId;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,8 @@ builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.MonitorStat
 builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.AnalisadorVulnerabilidades>();
 builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.GeradorDefesasService>();
 builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.TaticaAtaqueService>();
+builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.CaptureAssessmentService>();
+builder.Services.AddScoped<IObterPatoPorIdUseCase, ObterPatoPorIdUseCase>();
 
 // CORS
 var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();

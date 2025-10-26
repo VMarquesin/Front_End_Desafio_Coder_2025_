@@ -63,22 +63,28 @@ namespace OperacaoPato.Backend.Application.UseCases.CadastrarPato
 
                 return new PatoDto
                 {
+                    Id = created.Id, // <-- ADICIONADO
                     DroneNumeroSerie = created.DroneNumeroSerie,
                     AlturaValor = created.Altura.Valor,
                     AlturaUnidade = created.Altura.UnidadeComprimento.ToString(),
-                    PesoValor = created.Peso.Em(created.Peso.UnidadeMassa),
+                    PesoValor = created.Peso.Valor, // Ajuste se precisar do .Em()
                     PesoUnidade = created.Peso.UnidadeMassa.ToString(),
-                    Pais = created.Localizacao.Pais,
-                    Cidade = created.Localizacao.Cidade,
+                    Pais = created.Localizacao.Pais, // <-- Verificado
+                    Cidade = created.Localizacao.Cidade, // <-- Verificado
                     Latitude = created.Localizacao.Coordenada.Latitude,
                     Longitude = created.Localizacao.Coordenada.Longitude,
+                    PontoReferencia = created.Localizacao.PontoReferencia, // <-- ADICIONADO
+                    Precisao = created.Localizacao.Precisao.Valor, // <-- ADICIONADO
+                    PrecisaoUnidade = created.Localizacao.Precisao.UnidadeComprimento.ToString(), // <-- ADICIONADO
                     Status = created.Status.ToString(),
                     BatimentosPorMinuto = created.BatimentosPorMinuto,
                     QuantidadeMutacoes = created.QuantidadeMutacoes,
-                    PoderNome = created.Poder.Nome,
-                    PoderDescricao = created.Poder.Descricao,
-                    PoderClassificacao = created.Poder.Classificacao,
+                    PoderNome = created.Poder?.Nome ?? string.Empty, 
+                    PoderDescricao = created.Poder?.Descricao ?? string.Empty, 
+                    PoderClassificacao = created.Poder?.Classificacao ?? string.Empty,
                     DataColetaUtc = created.DataColetaUtc
+                    // SequenciaDna e RelatorioRisco podem ser omitidos na resposta do POST
+                    // Se você QUISER incluí-los, precisaria chamar GeradorDna e AssessmentService aqui também.
                 };
             }
             catch (ErrorOnValidationException) { throw; }

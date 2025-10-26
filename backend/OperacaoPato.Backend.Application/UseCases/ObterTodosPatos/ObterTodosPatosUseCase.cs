@@ -24,6 +24,7 @@ namespace OperacaoPato.Backend.Application.UseCases.ObterTodosPatos
         {
             return new PatoDto
             {
+                Id = created.Id,
                 DroneNumeroSerie = created.DroneNumeroSerie,
                 AlturaValor = created.Altura.Valor,
                 AlturaUnidade = created.Altura.UnidadeComprimento.ToString(),
@@ -41,7 +42,7 @@ namespace OperacaoPato.Backend.Application.UseCases.ObterTodosPatos
                 PoderClassificacao = created.Poder.Classificacao,
                 DataColetaUtc = created.DataColetaUtc,
                 Precisao = created.Localizacao.Precisao.Valor,
-                PrecisaoUnidade = created.Localizacao.Precisao.UnidadeComprimento.ToString()
+                PrecisaoUnidade = created.Localizacao.Precisao.UnidadeComprimento.ToString(),
             };
         }
     }

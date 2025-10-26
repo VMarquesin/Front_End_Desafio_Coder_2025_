@@ -1,0 +1,93 @@
+.landingContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-dark); /* Usa a cor de fundo principal */
+  color: var(--color-text-primary);
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden; /* Para as linhas de fundo */
+}
+
+.content {
+  max-width: 600px;
+  z-index: 1; /* Fica acima das linhas de fundo */
+}
+
+.logoIcon {
+  color: var(--color-accent); /* Verde DSIN */
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.title {
+  font-size: 4rem;
+  color: var(--color-accent);
+  margin-bottom: 0px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  margin-top: -10px;
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.accessButton {
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-bg-dark);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.accessButton:hover {
+  filter: brightness(1.2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(52, 211, 153, 0.2); /* Sombra verde */
+}
+
+/* Efeito de Fundo Opcional */
+.bgLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.line {
+  position: absolute;
+  width: 1px;
+  background-color: rgba(51, 65, 85, 0.3); /* --color-bg-light com opacidade */
+  bottom: 0;
+}
+
+.line:nth-child(1) { left: 20%; top: 0; animation: drop 10s linear infinite; }
+.line:nth-child(2) { left: 50%; top: -50%; animation: drop 12s linear infinite 1s; }
+.line:nth-child(3) { left: 80%; top: -20%; animation: drop 8s linear infinite 0.5s; }
+
+@keyframes drop {
+  from { transform: translateY(0); }
+  to { transform: translateY(100vh); }
+}

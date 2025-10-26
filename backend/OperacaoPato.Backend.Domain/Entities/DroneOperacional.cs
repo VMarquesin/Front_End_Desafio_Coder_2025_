@@ -123,7 +123,7 @@ public class DroneOperacional : Drone
 
     private static double ToRad(double deg) => deg * Math.PI / 180.0;
 
-    private DroneOperacional() : base("", "", "", "") 
+    private DroneOperacional() : base("TEMP_SERIAL", "TEMP_MARCA", "TEMP_FAB", "TEMP_PAIS")
     { 
         Bateria = new NivelRecurso(0, 100, "kWh");
         Combustivel = new NivelRecurso(0, 100, "L");

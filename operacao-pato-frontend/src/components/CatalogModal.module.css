@@ -9,9 +9,9 @@
    z-index: 9999;
 }
 
-/* =========================
+/* 
    CONTAINER PRINCIPAL
-========================= */
+ */
 .modalContent {
    background-color: var(--color-bg-medium);
    border: 1px solid var(--color-bg-light);
@@ -32,9 +32,9 @@
    overflow: hidden;
 }
 
-/* =========================
+/* 
    CABEÇALHO
-========================= */
+ */
 .modalHeader {
    display: flex;
    justify-content: space-between;
@@ -58,9 +58,9 @@
    line-height: 1;
 }
 
-/* =========================
+/* 
    CORPO COM SCROLL
-========================= */
+ */
 .modalBody {
    flex: 1;
    overflow-y: auto;
@@ -83,9 +83,9 @@
    background: var(--color-text-secondary);
 }
 
-/* =========================
+/* 
    FIELDSETS E FORM
-========================= */
+ */
 fieldset {
    border: 1px solid var(--color-bg-light);
    border-radius: 6px;
@@ -139,9 +139,9 @@ legend {
    border-color: var(--color-accent);
 }
 
-/* =========================
+/* 
    RODAPÉ
-========================= */
+ */
 .modalFooter {
    display: flex;
    justify-content: flex-end;
@@ -151,9 +151,9 @@ legend {
    flex-shrink: 0;
 }
 
-/* =========================
+/* 
    BOTÕES
-========================= */
+ */
 .buttonPrimary,
 .buttonSecondary {
    padding: 10px 20px;
@@ -190,9 +190,9 @@ legend {
    cursor: not-allowed;
 }
 
-/* =========================
+/* 
    MENSAGEM DE ERRO
-========================= */
+ */
 .errorText {
    color: var(--color-danger);
    font-size: 14px;

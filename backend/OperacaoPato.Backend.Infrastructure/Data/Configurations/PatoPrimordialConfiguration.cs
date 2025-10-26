@@ -58,76 +58,89 @@ namespace OperacaoPato.Backend.Infrastructure.Data.Configurations
             });
 
             // Dados iniciais (usando objetos anônimos para HasData — necessário para tipos owned / construtores complexos)
+            // --- PARTE 3: Seeding (A CORREÇÃO - Separando HasData) ---
+            
+            // IDs estáticos
+            var pato1Id = Guid.Parse("11111111-1111-1111-1111-111111111111");
+            var pato2Id = Guid.Parse("22222222-2222-2222-2222-222222222222");
+            var pato3Id = Guid.Parse("33333333-3333-3333-3333-333333333333");
+
+            // Data de coleta fixa
+            var dataColeta1 = DateTime.Parse("2025-10-23T12:00:00Z").ToUniversalTime();
+            var dataColeta2 = DateTime.Parse("2025-10-24T12:00:00Z").ToUniversalTime();
+            var dataColeta3 = DateTime.Parse("2025-10-25T12:00:00Z").ToUniversalTime();
+
+            // 3a. Popula os Patos (APENAS propriedades diretas)
             builder.HasData(
-                new
-                {
-                    Id = Guid.Parse("11111111-1111-1111-1111-111111111111"),
+                new { 
+                    Id = pato1Id, 
                     DroneNumeroSerie = "DRONE-001",
-                    Altura_Valor = 50.0,
-                    Altura_Unidade = 1, // Centimetro
-                    Peso_Valor = 2500.0,
-                    Peso_Unidade = 0, // Grama
-                    Localizacao_Cidade = "Manaus",
-                    Localizacao_Pais = "Brasil",
-                    Localizacao_PontoReferencia = "Encontro das Águas",
-                    Localizacao_Latitude = -3.1190,
-                    Localizacao_Longitude = -60.0217,
-                    Localizacao_Precisao_Valor = 5.0,
-                    Localizacao_Precisao_Unidade = 0, // Metro
-                    Poder_Nome = "Rajada de Água",
-                    Poder_Descricao = "Dispara jatos de água pressurizada",
-                    Poder_Classificacao = "ofensivo",
                     Status = StatusHibernacao.Desperto,
                     BatimentosPorMinuto = (int?)null,
                     QuantidadeMutacoes = 2,
-                    DataColetaUtc = DateTime.Parse("2025-10-23T12:00:00Z")
+                    DataColetaUtc = dataColeta1
                 },
-                new
-                {
-                    Id = Guid.Parse("22222222-2222-2222-2222-222222222222"),
+                new { 
+                    Id = pato2Id, 
                     DroneNumeroSerie = "DRONE-002",
-                    Altura_Valor = 45.0,
-                    Altura_Unidade = 1,
-                    Peso_Valor = 2200.0,
-                    Peso_Unidade = 0,
-                    Localizacao_Cidade = "Rio de Janeiro",
-                    Localizacao_Pais = "Brasil",
-                    Localizacao_PontoReferencia = "Pão de Açúcar",
-                    Localizacao_Latitude = -22.9068,
-                    Localizacao_Longitude = -43.1729,
-                    Localizacao_Precisao_Valor = 10.0,
-                    Localizacao_Precisao_Unidade = 0,
-                    Poder_Nome = "Camuflagem Aquática",
-                    Poder_Descricao = "Torna-se invisível na água",
-                    Poder_Classificacao = "defensivo",
                     Status = StatusHibernacao.Transe,
                     BatimentosPorMinuto = 30,
                     QuantidadeMutacoes = 3,
-                    DataColetaUtc = DateTime.Parse("2025-10-24T12:00:00Z")
+                    DataColetaUtc = dataColeta2
                 },
-                new
-                {
-                    Id = Guid.Parse("33333333-3333-3333-3333-333333333333"),
+                new { 
+                    Id = pato3Id, 
                     DroneNumeroSerie = "DRONE-003",
-                    Altura_Valor = 55.0,
-                    Altura_Unidade = 1,
-                    Peso_Valor = 3000.0,
-                    Peso_Unidade = 0,
-                    Localizacao_Cidade = "São Paulo",
-                    Localizacao_Pais = "Brasil",
-                    Localizacao_PontoReferencia = "Parque Ibirapuera",
-                    Localizacao_Latitude = -23.5505,
-                    Localizacao_Longitude = -46.6333,
-                    Localizacao_Precisao_Valor = 8.0,
-                    Localizacao_Precisao_Unidade = 0,
-                    Poder_Nome = "Voo Supersônico",
-                    Poder_Descricao = "Voa em velocidades extremas",
-                    Poder_Classificacao = "mobilidade",
                     Status = StatusHibernacao.HibernacaoProfunda,
                     BatimentosPorMinuto = 15,
                     QuantidadeMutacoes = 5,
-                    DataColetaUtc = DateTime.Parse("2025-10-25T12:00:00Z")
+                    DataColetaUtc = dataColeta3
                 }
+            );
+
+            // 3b. Popula ALTURA (Owned Type) separadamente
+            // Note o nome da chave estrangeira gerado pelo EF: PatoPrimordialId
+            builder.OwnsOne(p => p.Altura).HasData(
+                new { PatoPrimordialId = pato1Id, Valor = 50.0, UnidadeComprimento = UnidadeComprimento.Centimetro }, // Valor = Altura_Valor, UnidadeComprimento = Altura_Unidade
+                new { PatoPrimordialId = pato2Id, Valor = 45.0, UnidadeComprimento = UnidadeComprimento.Centimetro },
+                new { PatoPrimordialId = pato3Id, Valor = 55.0, UnidadeComprimento = UnidadeComprimento.Centimetro }
+            );
+
+            // 3c. Popula PESO (Owned Type) separadamente
+            builder.OwnsOne(p => p.Peso).HasData(
+                new { PatoPrimordialId = pato1Id, Valor = 2500.0, UnidadeMassa = UnidadeMassa.Grama }, // Valor = Peso_Valor, UnidadeMassa = Peso_Unidade
+                new { PatoPrimordialId = pato2Id, Valor = 2200.0, UnidadeMassa = UnidadeMassa.Grama },
+                new { PatoPrimordialId = pato3Id, Valor = 3000.0, UnidadeMassa = UnidadeMassa.Grama }
+            );
+
+            // 3d. Popula LOCALIZACAO (Owned Type) separadamente
+            // Note a chave estrangeira aqui também
+            builder.OwnsOne(p => p.Localizacao).HasData(
+                new { PatoPrimordialId = pato1Id, Cidade = "Manaus", Pais = "Brasil", PontoReferencia = "Encontro das Águas" },
+                new { PatoPrimordialId = pato2Id, Cidade = "Rio de Janeiro", Pais = "Brasil", PontoReferencia = "Pão de Açúcar" },
+                new { PatoPrimordialId = pato3Id, Cidade = "São Paulo", Pais = "Brasil", PontoReferencia = "Parque Ibirapuera" }
+            );
+
+            // 3e. Popula COORDENADA (Owned dentro de Localizacao) separadamente
+            // Note a chave estrangeira aninhada: LocalizacaoPatoPrimordialId
+            builder.OwnsOne(p => p.Localizacao).OwnsOne(l => l.Coordenada).HasData(
+                 new { LocalizacaoPatoPrimordialId = pato1Id, Latitude = -3.1190, Longitude = -60.0217 }, // Latitude = Localizacao_Latitude, etc.
+                 new { LocalizacaoPatoPrimordialId = pato2Id, Latitude = -22.9068, Longitude = -43.1729 },
+                 new { LocalizacaoPatoPrimordialId = pato3Id, Latitude = -23.5505, Longitude = -46.6333 }
+            );
+
+            // 3f. Popula PRECISÃO (Owned dentro de Localizacao) separadamente
+            builder.OwnsOne(p => p.Localizacao).OwnsOne(l => l.Precisao).HasData(
+                 new { LocalizacaoPatoPrimordialId = pato1Id, Valor = 5.0, UnidadeComprimento = UnidadeComprimento.Metro }, // Valor = Localizacao_Precisao_Valor, etc.
+                 new { LocalizacaoPatoPrimordialId = pato2Id, Valor = 10.0, UnidadeComprimento = UnidadeComprimento.Metro },
+                 new { LocalizacaoPatoPrimordialId = pato3Id, Valor = 8.0, UnidadeComprimento = UnidadeComprimento.Metro }
+            );
+
+            // 3g. Popula PODER (Owned Type) separadamente - Note que só precisamos dos patos que TÊM poder
+            builder.OwnsOne(p => p.Poder).HasData(
+                new { PatoPrimordialId = pato1Id, Nome = "Rajada de Água", Descricao = "Dispara jatos de água pressurizada", Classificacao = "ofensivo" }, // Nome = Poder_Nome, etc.
+                new { PatoPrimordialId = pato2Id, Nome = "Camuflagem Aquática", Descricao = "Torna-se invisível na água", Classificacao = "defensivo" },
+                new { PatoPrimordialId = pato3Id, Nome = "Voo Supersônico", Descricao = "Voa em velocidades extremas", Classificacao = "mobilidade" }
             );
         }
     }

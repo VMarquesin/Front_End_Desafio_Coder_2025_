@@ -1,31 +1,38 @@
-import { Routes, Route } from 'react-router-dom'
-import Layout from './components/Layout'
-import DashboardPage from './pages/DashboardPage'
-import PatopediaPage from './pages/PatopediaPage'
-import PatoDetailPage from './pages/PatoDetailPage'
-import MissionControlPage from './pages/MissionControlPage'
-import FrotaPage from './pages/FrotaPage'
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout'; 
+import LandingPage from './pages/LandingPage'; 
+import DashboardPage from './pages/DashboardPage';
+import PatopediaPage from './pages/PatopediaPage';
+import PatoDetailPage from './pages/PatoDetailPage';
+import MissionControlPage from './pages/MissionControlPage';
+import FrotaPage from './pages/FrotaPage';
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        {/* Rota principal (Módulo 1) */}
-        <Route path="/" element={<DashboardPage />} />
-        
-        {/* Rota da Pato-pédia (Módulo 2) */}
-        <Route path="/patopedia" element={<PatopediaPage />} />
-        
-        {/* Rota de Detalhes de 1 Pato (usando ID) */}
-        <Route path="/pato/:id" element={<PatoDetailPage />} />
-        
-        {/* Rota do Combate (Módulo 3) */}
-        <Route path="/missao/:patoId" element={<MissionControlPage />} />
+    <Routes>
+      {/* Página inicial (sem layout) */}
+      <Route path="/" element={<LandingPage />} /> 
 
-        <Route path="/frota" element={<FrotaPage />} />
-      </Routes>
-    </Layout>
-  )
+      {/* Rota pública fora do dashboard */}
+      <Route path="/pato/:id" element={<PatoDetailPage />} />
+
+      {/* Grupo de rotas internas que usam o Layout */}
+      <Route 
+        path="/dashboard/*" 
+        element={
+          <Layout> 
+            <Routes> 
+              <Route index element={<DashboardPage />} /> 
+              <Route path="patopedia" element={<PatopediaPage />} />
+              <Route path="pato/:id" element={<PatoDetailPage />} />
+              <Route path="missao/:patoId" element={<MissionControlPage />} />
+              <Route path="frota" element={<FrotaPage />} />
+            </Routes>
+          </Layout>
+        } 
+      />
+    </Routes>
+  );
 }
 
-export default App
+export default App;

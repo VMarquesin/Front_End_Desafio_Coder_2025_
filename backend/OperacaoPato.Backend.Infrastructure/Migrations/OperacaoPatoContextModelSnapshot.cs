@@ -22,6 +22,101 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("OperacaoPato.Backend.Domain.Entities.DroneOperacional", b =>
+                {
+                    b.Property<string>("NumeroSerie")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("AltitudeAtual")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Fabricante")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Marca")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PaisOrigem")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UltimaAtualizacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("VelocidadeAtual")
+                        .HasColumnType("float");
+
+                    b.HasKey("NumeroSerie");
+
+                    b.ToTable("Drones");
+
+                    b.HasData(
+                        new
+                        {
+                            NumeroSerie = "DRONE-001",
+                            AltitudeAtual = 0.0,
+                            Fabricante = "DJI Technology",
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Marca = "DJI",
+                            PaisOrigem = "China",
+                            UltimaAtualizacao = new DateTime(2025, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            VelocidadeAtual = 0.0
+                        },
+                        new
+                        {
+                            NumeroSerie = "DRONE-002",
+                            AltitudeAtual = 0.0,
+                            Fabricante = "Parrot SA",
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Marca = "Parrot",
+                            PaisOrigem = "França",
+                            UltimaAtualizacao = new DateTime(2025, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            VelocidadeAtual = 0.0
+                        },
+                        new
+                        {
+                            NumeroSerie = "DRONE-003",
+                            AltitudeAtual = 0.0,
+                            Fabricante = "Skydio Inc",
+                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Marca = "Skydio",
+                            PaisOrigem = "Estados Unidos",
+                            UltimaAtualizacao = new DateTime(2025, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            VelocidadeAtual = 0.0
+                        },
+                        new
+                        {
+                            NumeroSerie = "DRONE-004",
+                            AltitudeAtual = 0.0,
+                            Fabricante = "Autel Robotics",
+                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
+                            Marca = "Autel",
+                            PaisOrigem = "China",
+                            UltimaAtualizacao = new DateTime(2025, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            VelocidadeAtual = 0.0
+                        },
+                        new
+                        {
+                            NumeroSerie = "DRONE-005",
+                            AltitudeAtual = 0.0,
+                            Fabricante = "PowerVision Tech",
+                            Id = new Guid("55555555-5555-5555-5555-555555555555"),
+                            Marca = "PowerVision",
+                            PaisOrigem = "China",
+                            UltimaAtualizacao = new DateTime(2025, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            VelocidadeAtual = 0.0
+                        });
+                });
+
             modelBuilder.Entity("OperacaoPato.Backend.Domain.Entities.PatoPrimordial", b =>
                 {
                     b.Property<Guid>("Id")
@@ -53,7 +148,7 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
-                            DataColetaUtc = new DateTime(2025, 10, 23, 9, 0, 0, 0, DateTimeKind.Local),
+                            DataColetaUtc = new DateTime(2025, 10, 23, 12, 0, 0, 0, DateTimeKind.Utc),
                             DroneNumeroSerie = "DRONE-001",
                             QuantidadeMutacoes = 2,
                             Status = 0
@@ -62,7 +157,7 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
                         {
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
                             BatimentosPorMinuto = 30,
-                            DataColetaUtc = new DateTime(2025, 10, 24, 9, 0, 0, 0, DateTimeKind.Local),
+                            DataColetaUtc = new DateTime(2025, 10, 24, 12, 0, 0, 0, DateTimeKind.Utc),
                             DroneNumeroSerie = "DRONE-002",
                             QuantidadeMutacoes = 3,
                             Status = 1
@@ -71,79 +166,265 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
                         {
                             Id = new Guid("33333333-3333-3333-3333-333333333333"),
                             BatimentosPorMinuto = 15,
-                            DataColetaUtc = new DateTime(2025, 10, 25, 9, 0, 0, 0, DateTimeKind.Local),
+                            DataColetaUtc = new DateTime(2025, 10, 25, 12, 0, 0, 0, DateTimeKind.Utc),
                             DroneNumeroSerie = "DRONE-003",
                             QuantidadeMutacoes = 5,
                             Status = 2
                         });
                 });
 
-            modelBuilder.Entity("OperacaoPato.Domain.Entities.Drone", b =>
+            modelBuilder.Entity("OperacaoPato.Backend.Domain.Entities.DroneOperacional", b =>
                 {
-                    b.Property<string>("NumeroSerie")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Fabricante")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Marca")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PaisOrigem")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("NumeroSerie");
-
-                    b.ToTable("Drones");
-
-                    b.HasData(
-                        new
+                    b.OwnsOne("OperacaoPato.Backend.Domain.ValueObjects.NivelRecurso", "Bateria", b1 =>
                         {
-                            NumeroSerie = "DRONE-001",
-                            Fabricante = "DJI Technology",
-                            Marca = "DJI",
-                            PaisOrigem = "China"
-                        },
-                        new
-                        {
-                            NumeroSerie = "DRONE-002",
-                            Fabricante = "Parrot SA",
-                            Marca = "Parrot",
-                            PaisOrigem = "França"
-                        },
-                        new
-                        {
-                            NumeroSerie = "DRONE-003",
-                            Fabricante = "Skydio Inc",
-                            Marca = "Skydio",
-                            PaisOrigem = "Estados Unidos"
-                        },
-                        new
-                        {
-                            NumeroSerie = "DRONE-004",
-                            Fabricante = "Autel Robotics",
-                            Marca = "Autel",
-                            PaisOrigem = "China"
-                        },
-                        new
-                        {
-                            NumeroSerie = "DRONE-005",
-                            Fabricante = "PowerVision Tech",
-                            Marca = "PowerVision",
-                            PaisOrigem = "China"
+                            b1.Property<string>("DroneOperacionalNumeroSerie")
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.Property<string>("Unidade")
+                                .IsRequired()
+                                .HasMaxLength(10)
+                                .HasColumnType("nvarchar(10)");
+
+                            b1.Property<double>("Valor")
+                                .HasColumnType("float");
+
+                            b1.Property<double>("ValorMaximo")
+                                .HasColumnType("float");
+
+                            b1.HasKey("DroneOperacionalNumeroSerie");
+
+                            b1.ToTable("Drones");
+
+                            b1.WithOwner()
+                                .HasForeignKey("DroneOperacionalNumeroSerie");
+
+                            b1.HasData(
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-001",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-002",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-003",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-004",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-005",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                });
                         });
+
+                    b.OwnsOne("OperacaoPato.Backend.Domain.ValueObjects.NivelRecurso", "Combustivel", b1 =>
+                        {
+                            b1.Property<string>("DroneOperacionalNumeroSerie")
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.Property<string>("Unidade")
+                                .IsRequired()
+                                .HasMaxLength(10)
+                                .HasColumnType("nvarchar(10)");
+
+                            b1.Property<double>("Valor")
+                                .HasColumnType("float");
+
+                            b1.Property<double>("ValorMaximo")
+                                .HasColumnType("float");
+
+                            b1.HasKey("DroneOperacionalNumeroSerie");
+
+                            b1.ToTable("Drones");
+
+                            b1.WithOwner()
+                                .HasForeignKey("DroneOperacionalNumeroSerie");
+
+                            b1.HasData(
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-001",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-002",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-003",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-004",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-005",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                });
+                        });
+
+                    b.OwnsOne("OperacaoPato.Backend.Domain.ValueObjects.NivelRecurso", "IntegridadeFisica", b1 =>
+                        {
+                            b1.Property<string>("DroneOperacionalNumeroSerie")
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.Property<string>("Unidade")
+                                .IsRequired()
+                                .HasMaxLength(10)
+                                .HasColumnType("nvarchar(10)");
+
+                            b1.Property<double>("Valor")
+                                .HasColumnType("float");
+
+                            b1.Property<double>("ValorMaximo")
+                                .HasColumnType("float");
+
+                            b1.HasKey("DroneOperacionalNumeroSerie");
+
+                            b1.ToTable("Drones");
+
+                            b1.WithOwner()
+                                .HasForeignKey("DroneOperacionalNumeroSerie");
+
+                            b1.HasData(
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-001",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-002",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-003",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-004",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-005",
+                                    Unidade = "%",
+                                    Valor = 100.0,
+                                    ValorMaximo = 100.0
+                                });
+                        });
+
+                    b.OwnsOne("OperacaoPato.Backend.Domain.ValueObjects.Coordenada", "Posicao", b1 =>
+                        {
+                            b1.Property<string>("DroneOperacionalNumeroSerie")
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.Property<double>("Latitude")
+                                .HasColumnType("float");
+
+                            b1.Property<double>("Longitude")
+                                .HasColumnType("float");
+
+                            b1.HasKey("DroneOperacionalNumeroSerie");
+
+                            b1.ToTable("Drones");
+
+                            b1.WithOwner()
+                                .HasForeignKey("DroneOperacionalNumeroSerie");
+
+                            b1.HasData(
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-001",
+                                    Latitude = 0.0,
+                                    Longitude = 0.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-002",
+                                    Latitude = 0.0,
+                                    Longitude = 0.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-003",
+                                    Latitude = 0.0,
+                                    Longitude = 0.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-004",
+                                    Latitude = 0.0,
+                                    Longitude = 0.0
+                                },
+                                new
+                                {
+                                    DroneOperacionalNumeroSerie = "DRONE-005",
+                                    Latitude = 0.0,
+                                    Longitude = 0.0
+                                });
+                        });
+
+                    b.Navigation("Bateria")
+                        .IsRequired();
+
+                    b.Navigation("Combustivel")
+                        .IsRequired();
+
+                    b.Navigation("IntegridadeFisica")
+                        .IsRequired();
+
+                    b.Navigation("Posicao")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("OperacaoPato.Backend.Domain.Entities.PatoPrimordial", b =>
                 {
-                    b.OwnsOne("OperacaoPato.Domain.ValueObjects.Comprimento", "Altura", b1 =>
+                    b.OwnsOne("OperacaoPato.Backend.Domain.ValueObjects.Comprimento", "Altura", b1 =>
                         {
                             b1.Property<Guid>("PatoPrimordialId")
                                 .HasColumnType("uniqueidentifier");
@@ -162,6 +443,26 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("PatoPrimordialId");
+
+                            b1.HasData(
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("11111111-1111-1111-1111-111111111111"),
+                                    UnidadeComprimento = 1,
+                                    Valor = 50.0
+                                },
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("22222222-2222-2222-2222-222222222222"),
+                                    UnidadeComprimento = 1,
+                                    Valor = 45.0
+                                },
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("33333333-3333-3333-3333-333333333333"),
+                                    UnidadeComprimento = 1,
+                                    Valor = 55.0
+                                });
                         });
 
                     b.OwnsOne("OperacaoPato.Backend.Domain.Entities.SuperPoder", "Poder", b1 =>
@@ -193,6 +494,29 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("PatoPrimordialId");
+
+                            b1.HasData(
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("11111111-1111-1111-1111-111111111111"),
+                                    Classificacao = "ofensivo",
+                                    Descricao = "Dispara jatos de água pressurizada",
+                                    Nome = "Rajada de Água"
+                                },
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("22222222-2222-2222-2222-222222222222"),
+                                    Classificacao = "defensivo",
+                                    Descricao = "Torna-se invisível na água",
+                                    Nome = "Camuflagem Aquática"
+                                },
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("33333333-3333-3333-3333-333333333333"),
+                                    Classificacao = "mobilidade",
+                                    Descricao = "Voa em velocidades extremas",
+                                    Nome = "Voo Supersônico"
+                                });
                         });
 
                     b.OwnsOne("OperacaoPato.Backend.Domain.ValueObjects.Localizacao", "Localizacao", b1 =>
@@ -243,9 +567,29 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
 
                                     b2.WithOwner()
                                         .HasForeignKey("LocalizacaoPatoPrimordialId");
+
+                                    b2.HasData(
+                                        new
+                                        {
+                                            LocalizacaoPatoPrimordialId = new Guid("11111111-1111-1111-1111-111111111111"),
+                                            Latitude = -3.1190000000000002,
+                                            Longitude = -60.021700000000003
+                                        },
+                                        new
+                                        {
+                                            LocalizacaoPatoPrimordialId = new Guid("22222222-2222-2222-2222-222222222222"),
+                                            Latitude = -22.9068,
+                                            Longitude = -43.172899999999998
+                                        },
+                                        new
+                                        {
+                                            LocalizacaoPatoPrimordialId = new Guid("33333333-3333-3333-3333-333333333333"),
+                                            Latitude = -23.5505,
+                                            Longitude = -46.633299999999998
+                                        });
                                 });
 
-                            b1.OwnsOne("OperacaoPato.Domain.ValueObjects.Comprimento", "Precisao", b2 =>
+                            b1.OwnsOne("OperacaoPato.Backend.Domain.ValueObjects.Comprimento", "Precisao", b2 =>
                                 {
                                     b2.Property<Guid>("LocalizacaoPatoPrimordialId")
                                         .HasColumnType("uniqueidentifier");
@@ -264,6 +608,26 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
 
                                     b2.WithOwner()
                                         .HasForeignKey("LocalizacaoPatoPrimordialId");
+
+                                    b2.HasData(
+                                        new
+                                        {
+                                            LocalizacaoPatoPrimordialId = new Guid("11111111-1111-1111-1111-111111111111"),
+                                            UnidadeComprimento = 2,
+                                            Valor = 5.0
+                                        },
+                                        new
+                                        {
+                                            LocalizacaoPatoPrimordialId = new Guid("22222222-2222-2222-2222-222222222222"),
+                                            UnidadeComprimento = 2,
+                                            Valor = 10.0
+                                        },
+                                        new
+                                        {
+                                            LocalizacaoPatoPrimordialId = new Guid("33333333-3333-3333-3333-333333333333"),
+                                            UnidadeComprimento = 2,
+                                            Valor = 8.0
+                                        });
                                 });
 
                             b1.Navigation("Coordenada")
@@ -271,6 +635,29 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
 
                             b1.Navigation("Precisao")
                                 .IsRequired();
+
+                            b1.HasData(
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("11111111-1111-1111-1111-111111111111"),
+                                    Cidade = "Manaus",
+                                    Pais = "Brasil",
+                                    PontoReferencia = "Encontro das Águas"
+                                },
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("22222222-2222-2222-2222-222222222222"),
+                                    Cidade = "Rio de Janeiro",
+                                    Pais = "Brasil",
+                                    PontoReferencia = "Pão de Açúcar"
+                                },
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("33333333-3333-3333-3333-333333333333"),
+                                    Cidade = "São Paulo",
+                                    Pais = "Brasil",
+                                    PontoReferencia = "Parque Ibirapuera"
+                                });
                         });
 
                     b.OwnsOne("OperacaoPato.Backend.Domain.ValueObjects.Massa", "Peso", b1 =>
@@ -292,6 +679,26 @@ namespace OperacaoPato.Backend.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("PatoPrimordialId");
+
+                            b1.HasData(
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("11111111-1111-1111-1111-111111111111"),
+                                    UnidadeMassa = 1,
+                                    Valor = 2500.0
+                                },
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("22222222-2222-2222-2222-222222222222"),
+                                    UnidadeMassa = 1,
+                                    Valor = 2200.0
+                                },
+                                new
+                                {
+                                    PatoPrimordialId = new Guid("33333333-3333-3333-3333-333333333333"),
+                                    UnidadeMassa = 1,
+                                    Valor = 3000.0
+                                });
                         });
 
                     b.Navigation("Altura")

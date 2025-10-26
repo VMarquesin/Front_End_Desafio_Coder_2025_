@@ -5,13 +5,13 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
 {
     public sealed class Localizacao
     {
-        public string Cidade { get; private set; }
         public string Pais { get; private set; }
+        public string Cidade { get; private set; }
         public Coordenada Coordenada { get; private set; }
         public Comprimento Precisao { get; private set; }
         public string? PontoReferencia { get; private set; }
 
-        public Localizacao(string cidade, string pais, Coordenada coordenada, Comprimento precisao, string? pontoReferencia = null)
+        public Localizacao(string pais, string cidade, Coordenada coordenada, Comprimento precisao, string? pontoReferencia = null)
         {
 
             var precisaoEmMetros = precisao.ConverterPara(UnidadeComprimento.Metro).Valor;
@@ -23,8 +23,8 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
             if (precisaoEmMetros > 30.0)
                 throw new ArgumentException("Precisão maior que 30 m não é válida.");
 
-            Cidade = cidade;
             Pais = pais;
+            Cidade = cidade;
             Coordenada = coordenada;
             Precisao = precisao;
             PontoReferencia = string.IsNullOrWhiteSpace(pontoReferencia) ? null : pontoReferencia;
@@ -33,8 +33,8 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
         // Parameterless ctor para EF
         private Localizacao()
         {
-            Cidade = string.Empty;
             Pais = string.Empty;
+            Cidade = string.Empty;
             Coordenada = new Coordenada(0.0, 0.0);
             Precisao = new Comprimento(0.0, UnidadeComprimento.Metro);
             PontoReferencia = null;

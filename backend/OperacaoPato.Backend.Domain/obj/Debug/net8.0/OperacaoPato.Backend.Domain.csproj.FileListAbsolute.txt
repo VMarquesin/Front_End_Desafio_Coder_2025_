@@ -34,3 +34,15 @@ C:\ProjetosCS\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\
 C:\ProjetosCS\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\refint\OperacaoPato.Backend.Domain.dll
 C:\ProjetosCS\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\OperacaoPato.Backend.Domain.pdb
 C:\ProjetosCS\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\ref\OperacaoPato.Backend.Domain.dll
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\bin\Debug\net8.0\OperacaoPato.Backend.Domain.deps.json
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\bin\Debug\net8.0\OperacaoPato.Backend.Domain.dll
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\bin\Debug\net8.0\OperacaoPato.Backend.Domain.pdb
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\OperacaoPato.Backend.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\OperacaoPato.Backend.Domain.AssemblyInfoInputs.cache
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\OperacaoPato.Backend.Domain.AssemblyInfo.cs
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\OperacaoPato.Backend.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\OperacaoPato.Backend.Domain.sourcelink.json
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\OperacaoPato.Backend.Domain.dll
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\refint\OperacaoPato.Backend.Domain.dll
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\OperacaoPato.Backend.Domain.pdb
+C:\Users\Cleber\Desktop\Vinicius\Conecta\Front_End_Desafio_Coder_2025_\backend\OperacaoPato.Backend.Domain\obj\Debug\net8.0\ref\OperacaoPato.Backend.Domain.dll

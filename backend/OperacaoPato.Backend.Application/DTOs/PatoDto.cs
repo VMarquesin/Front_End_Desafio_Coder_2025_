@@ -1,7 +1,11 @@
+using OperacaoPato.Backend.Application.Services; // <-- COLOQUE AQUI
+using System;
+
 namespace OperacaoPato.Backend.Application.DTOs
 {
     public class PatoDto
     {
+        public Guid Id { get; set; }
         public string DroneNumeroSerie { get; set; } = string.Empty;
 
         // Altura
@@ -33,5 +37,7 @@ namespace OperacaoPato.Backend.Application.DTOs
         public string PoderClassificacao { get; set; } = string.Empty;
         // Data da coleta (opcional; default = UtcNow)
         public DateTime? DataColetaUtc { get; set; }
+        public string? SequenciaDna { get; set; }
+        public CaptureAssessmentResult? RelatorioRisco { get; set; }
     }
 }

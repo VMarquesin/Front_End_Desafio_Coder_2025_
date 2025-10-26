@@ -90,7 +90,6 @@
   color: var(--color-accent);
 }
 
-/* Estilo para a "Sequência de DNA" */
 .dnaBox {
   grid-column: 1 / -1; 
 }
