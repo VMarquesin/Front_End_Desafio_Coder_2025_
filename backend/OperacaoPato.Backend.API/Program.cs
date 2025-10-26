@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using OperacaoPato.Backend.Application.DTOs;
 using OperacaoPato.Backend.Application.Services;
 using OperacaoPato.Backend.Application.Interfaces;
@@ -8,6 +9,7 @@ using OperacaoPato.Backend.Application.UseCases.CadastrarDrone;
 using OperacaoPato.Backend.Application.UseCases.CadastrarPato;
 using OperacaoPato.Backend.Application.UseCases.ObterTodosPatos;
 using OperacaoPato.Backend.API.Filters;
+using OperacaoPato.Backend.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Registrando serviços do DroneOperacional
+builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.ControladorVooService>();
+builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.NavegacaoService>();
+builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.MonitorStatusService>();
+builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.AnalisadorVulnerabilidades>();
+builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.GeradorDefesasService>();
+builder.Services.AddScoped<OperacaoPato.Backend.Application.Services.TaticaAtaqueService>();
 
 // CORS
 var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
@@ -44,6 +54,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IDroneService, DroneService>();
 builder.Services.AddScoped<IValidator<DroneDto>, DroneDtoValidator>();
 
+// Capture assessment service
+builder.Services.AddScoped<CaptureAssessmentService>();
+
 // Validators (já existente)
 builder.Services.AddScoped<IValidator<PatoDto>, PatoDtoValidator>();
 
@@ -52,9 +65,13 @@ builder.Services.AddScoped<CadastrarDroneUseCase>();
 builder.Services.AddScoped<ICadastrarPatoUseCase, CadastrarPatoUseCase>();
 builder.Services.AddScoped<IObterTodosPatosUseCase, ObterTodosPatosUseCase>();
 
-// Infra: Repository em memória
-builder.Services.AddSingleton<IDroneRepository, InMemoryDroneRepository>();
-builder.Services.AddSingleton<IPatoRepository, InMemoryPatoRepository>();
+// Entity Framework
+builder.Services.AddDbContext<OperacaoPatoContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Repositories
+builder.Services.AddScoped<IDroneRepository, EFDroneRepository>();
+builder.Services.AddScoped<IPatoRepository, EFPatoRepository>();
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 

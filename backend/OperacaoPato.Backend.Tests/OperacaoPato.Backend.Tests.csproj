@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OperacaoPato.Backend.Domain\OperacaoPato.Backend.Domain.csproj" />
+    <ProjectReference Include="..\OperacaoPato.Backend.Application\OperacaoPato.Backend.Application.csproj" />
   </ItemGroup>
 
 </Project>

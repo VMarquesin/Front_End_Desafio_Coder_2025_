@@ -1,5 +1,5 @@
 using OperacaoPato.Backend.Application.DTOs;
-using OperacaoPato.Domain.Entities;
+using OperacaoPato.Backend.Domain.Entities;
 
 namespace OperacaoPato.Backend.Application.Services
 {
@@ -8,14 +8,13 @@ namespace OperacaoPato.Backend.Application.Services
         // Consulta
         Task<IEnumerable<DroneDto>> ObterTodosAsync();
 
-        // Cadastro unitário (retorna DTO para a API)
+        // Cadastro unitário
         Task<DroneDto> CadastrarAsync(DroneDto droneDto);
 
-        // Cadastro em lote (retorna DTOs para a API)
+        // Cadastro em lote
         Task<IEnumerable<DroneDto>> CadastrarLoteAsync(IEnumerable<DroneDto> dtos);
 
-        // Métodos existentes (mantidos para compatibilidade, se usados em outros lugares)
-        Task<Drone> CadastrarDroneAsync(DroneDto droneDto);
+        // Remoção
         Task<bool> ApagarDroneAsync(string numeroSerie);
     }
 }

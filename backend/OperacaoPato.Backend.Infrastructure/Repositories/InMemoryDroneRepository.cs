@@ -1,14 +1,14 @@
 using System.Collections.Concurrent;
 using OperacaoPato.Backend.Application.Interfaces;
-using OperacaoPato.Domain.Entities;
+using OperacaoPato.Backend.Domain.Entities;
 
 namespace OperacaoPato.Backend.Infrastructure.Repositories
 {
     public class InMemoryDroneRepository : IDroneRepository
     {
-        private readonly ConcurrentDictionary<string, Drone> _drones = new();
+        private readonly ConcurrentDictionary<string, DroneOperacional> _drones = new();
 
-        public async Task<Drone> AdicionarAsync(Drone drone)
+        public async Task<DroneOperacional> AdicionarAsync(DroneOperacional drone)
         {
             if (!_drones.TryAdd(drone.NumeroSerie, drone))
             {
@@ -28,13 +28,13 @@ namespace OperacaoPato.Backend.Infrastructure.Repositories
             return await Task.FromResult(_drones.ContainsKey(numeroSerie));
         }
 
-        public async Task<Drone?> ObterPorNumeroSerieAsync(string numeroSerie)
+        public async Task<DroneOperacional?> ObterPorNumeroSerieAsync(string numeroSerie)
         {
             _drones.TryGetValue(numeroSerie, out var drone);
             return await Task.FromResult(drone);
         }
 
-        public async Task<IEnumerable<Drone>> ObterTodosAsync()
+        public async Task<IEnumerable<DroneOperacional>> ObterTodosAsync()
         {
             return await Task.FromResult(_drones.Values.ToList());
         }

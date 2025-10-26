@@ -1,18 +1,15 @@
 using System;
 using System.Globalization;
+using OperacaoPato.Backend.Domain.Enums;
 
 namespace OperacaoPato.Backend.Domain.ValueObjects
 {
-    public enum UnidadeMassa
-    {
-        Grama,
-        Libra
-    }
+
 
     public sealed class Massa
     {
-        public double Valor { get; }
-        public UnidadeMassa UnidadeMassa { get; }
+        public double Valor { get; private set; }
+        public UnidadeMassa UnidadeMassa { get; private set; }
 
         public Massa(double valor, UnidadeMassa unidade)
         {
@@ -22,12 +19,21 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
             UnidadeMassa = unidade;
         }
 
+        // Parameterless ctor para EF Core
+        private Massa()
+        {
+            Valor = 0.0;
+            UnidadeMassa = UnidadeMassa.Grama;
+        }
+
         private double ParaGramas()
         {
             return UnidadeMassa switch
             {
+                UnidadeMassa.Miligrama => Valor / 1000,
                 UnidadeMassa.Grama => Valor,
-                UnidadeMassa.Libra => Valor * 453.59237,
+                UnidadeMassa.Quilograma => Valor * 1000,
+                UnidadeMassa.Tonelada => Valor * 1_000_000,
                 _ => throw new NotSupportedException($"Unidade '{UnidadeMassa}' não suportada.")
             };
         }
@@ -36,8 +42,10 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
         {
             double convertido = unidadeAlvo switch
             {
+                UnidadeMassa.Miligrama => gramas * 1000,
                 UnidadeMassa.Grama => gramas,
-                UnidadeMassa.Libra => gramas / 453.59237,
+                UnidadeMassa.Quilograma => gramas / 1000,
+                UnidadeMassa.Tonelada => gramas / 1_000_000,
                 _ => throw new NotSupportedException($"Unidade '{unidadeAlvo}' não suportada.")
             };
 
@@ -51,15 +59,15 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
         }
 
         public double EmGramas() => ParaGramas();
-        public double EmLibras() => ParaGramas() / 453.59237;
-        
         public double Em(UnidadeMassa unidadeAlvo) => ConverterPara(unidadeAlvo).Valor;
 
         private static string Sigla(UnidadeMassa unidade) =>
             unidade switch
             {
+                UnidadeMassa.Miligrama => "mg",
                 UnidadeMassa.Grama => "g",
-                UnidadeMassa.Libra => "lb",
+                UnidadeMassa.Quilograma => "kg",
+                UnidadeMassa.Tonelada => "t",
                 _ => unidade.ToString()
             };
 

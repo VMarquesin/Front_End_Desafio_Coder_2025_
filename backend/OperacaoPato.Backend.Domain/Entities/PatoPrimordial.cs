@@ -1,23 +1,21 @@
 using System;
 using OperacaoPato.Backend.Domain.ValueObjects;
 using OperacaoPato.Backend.Domain.Enums;
-using OperacaoPato.Domain.ValueObjects;
-using OperacaoPato.Domain.Entities;
 
 namespace OperacaoPato.Backend.Domain.Entities
 {
     public sealed class PatoPrimordial
     {
-        public Guid Id { get; }
-        public string DroneNumeroSerie { get; }
-        public Comprimento Altura { get; }
-        public Massa Peso { get; }
-        public Localizacao Localizacao { get; }
-        public StatusHibernacao Status { get; }
-        public int? BatimentosPorMinuto { get; }
-        public int QuantidadeMutacoes { get; }
-        public SuperPoder Poder { get; }
-        public DateTime DataColetaUtc { get; }
+        public Guid Id { get; private set; }
+        public string DroneNumeroSerie { get; private set; }
+        public Comprimento Altura { get; private set; }
+        public Massa Peso { get; private set; }
+        public Localizacao Localizacao { get; private set; }
+        public StatusHibernacao Status { get; private set; }
+        public int? BatimentosPorMinuto { get; private set; }
+        public int QuantidadeMutacoes { get; private set; }
+        public SuperPoder Poder { get; private set; }
+        public DateTime DataColetaUtc { get; private set; }
 
         public PatoPrimordial(
             string droneNumeroSerie,
@@ -87,16 +85,32 @@ namespace OperacaoPato.Backend.Domain.Entities
             DataColetaUtc = dataColetaUtc?.ToUniversalTime() ?? DateTime.UtcNow;
         }
 
+    // Parameterless constructor for EF Core
+        private PatoPrimordial()
+        {
+            // Inicializadores padrão para satisfazer o compilador e permitir instanciação pelo EF
+            Id = Guid.Empty;
+            DroneNumeroSerie = string.Empty;
+            Altura = default!;
+            Peso = default!;
+            Localizacao = default!;
+            Status = default;
+            BatimentosPorMinuto = null;
+            QuantidadeMutacoes = 0;
+            Poder = default!;
+            DataColetaUtc = DateTime.UtcNow;
+        }
+
         public Comprimento ObterAlturaEm(UnidadeComprimento unidade) => Altura.ConverterPara(unidade);
         public string MostrarAltura()
         {
             return Altura.ToString();
         }
 
-        public double ObterPesoEm(UnidadeMassa unidade) => Peso.Em(unidade);
-        public string MostrarPeso(bool usarUnidadeOriginal = true, UnidadeMassa? unidade = null, int casasDecimais = 2)
+        public double ObterPesoEm(Enums.UnidadeMassa unidade) => Peso.Em(unidade);
+        public string MostrarPeso(bool usarUnidadeOriginal = true, Enums.UnidadeMassa? unidade = null, int casasDecimais = 2)
         {
-            if (usarUnidadeOriginal || unidade == null)
+            if (usarUnidadeOriginal || unidade is null)
                 return Peso.ToString();
             return Peso.ToString(unidade.Value, casasDecimais);
         }

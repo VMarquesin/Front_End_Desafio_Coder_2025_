@@ -1,20 +1,12 @@
 using System;
+using OperacaoPato.Backend.Domain.Enums;
 
-namespace OperacaoPato.Domain.ValueObjects
+namespace OperacaoPato.Backend.Domain.ValueObjects
 {
-    public enum UnidadeComprimento
-    {
-        Metro,
-        Centimetro,
-        Quilometro,
-        Polegada,
-        Pe,
-        Jarda
-    }
     public sealed class Comprimento
     {
-        public double Valor { get; }
-        public UnidadeComprimento UnidadeComprimento { get; }
+        public double Valor { get; private set; }
+        public UnidadeComprimento UnidadeComprimento { get; private set; }
 
         public Comprimento(double valor, UnidadeComprimento unidade)
         {
@@ -23,6 +15,13 @@ namespace OperacaoPato.Domain.ValueObjects
 
             Valor = valor;
             UnidadeComprimento = unidade;
+        }
+
+        // Parameterless ctor for EF Core
+        private Comprimento()
+        {
+            Valor = 0.0;
+            UnidadeComprimento = UnidadeComprimento.Metro;
         }
 
         private double ParaMetros()

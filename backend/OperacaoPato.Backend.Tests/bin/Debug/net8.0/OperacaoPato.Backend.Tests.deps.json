@@ -10,6 +10,7 @@
         "dependencies": {
           "FluentAssertions": "8.8.0",
           "Microsoft.NET.Test.Sdk": "17.8.0",
+          "OperacaoPato.Backend.Application": "1.0.0",
           "OperacaoPato.Backend.Domain": "1.0.0",
           "coverlet.collector": "6.0.0",
           "xunit": "2.5.3",
@@ -25,6 +26,14 @@
           "lib/net6.0/FluentAssertions.dll": {
             "assemblyVersion": "8.8.0.0",
             "fileVersion": "8.8.0.0"
+          }
+        }
+      },
+      "FluentValidation/12.0.0": {
+        "runtime": {
+          "lib/net8.0/FluentValidation.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.0.0"
           }
         }
       },
@@ -1030,10 +1039,31 @@
         }
       },
       "xunit.runner.visualstudio/2.5.3": {},
+      "OperacaoPato.Backend.Application/1.0.0": {
+        "dependencies": {
+          "FluentValidation": "12.0.0",
+          "OperacaoPato.Backend.Domain": "1.0.0",
+          "OperacaoPato.Backend.Shared": "1.0.0"
+        },
+        "runtime": {
+          "OperacaoPato.Backend.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "OperacaoPato.Backend.Domain/1.0.0": {
         "runtime": {
           "OperacaoPato.Backend.Domain.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "OperacaoPato.Backend.Shared/1.0.0": {
+        "runtime": {
+          "OperacaoPato.Backend.Shared.dll": {
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -1059,6 +1089,13 @@
       "sha512": "sha512-m0kwcqBwvVel03FuMa7Ozo/oTaxYbjeNlcOhQFkyQpwX/8wks6RNl/Jnn58DCZVs6c2oG1RsCZw7HfKSaxLm3w==",
       "path": "fluentassertions/8.8.0",
       "hashPath": "fluentassertions.8.8.0.nupkg.sha512"
+    },
+    "FluentValidation/12.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8NVLxtMUXynRHJIX3Hn1ACovaqZIJASufXIIFkD0EUbcd5PmMsL1xUD5h548gCezJ5BzlITaR9CAMrGe29aWpA==",
+      "path": "fluentvalidation/12.0.0",
+      "hashPath": "fluentvalidation.12.0.0.nupkg.sha512"
     },
     "Microsoft.CodeCoverage/17.8.0": {
       "type": "package",
@@ -1676,7 +1713,17 @@
       "path": "xunit.runner.visualstudio/2.5.3",
       "hashPath": "xunit.runner.visualstudio.2.5.3.nupkg.sha512"
     },
+    "OperacaoPato.Backend.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "OperacaoPato.Backend.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OperacaoPato.Backend.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

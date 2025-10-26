@@ -1,15 +1,15 @@
 using System;
-using OperacaoPato.Domain.ValueObjects; 
+using OperacaoPato.Backend.Domain.Enums; 
 
 namespace OperacaoPato.Backend.Domain.ValueObjects
 {
     public sealed class Localizacao
     {
-        public string Cidade { get; }
-        public string Pais { get; }
-        public Coordenada Coordenada { get; }
-        public Comprimento Precisao { get; }
-        public string? PontoReferencia { get; }
+        public string Cidade { get; private set; }
+        public string Pais { get; private set; }
+        public Coordenada Coordenada { get; private set; }
+        public Comprimento Precisao { get; private set; }
+        public string? PontoReferencia { get; private set; }
 
         public Localizacao(string cidade, string pais, Coordenada coordenada, Comprimento precisao, string? pontoReferencia = null)
         {
@@ -28,6 +28,16 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
             Coordenada = coordenada;
             Precisao = precisao;
             PontoReferencia = string.IsNullOrWhiteSpace(pontoReferencia) ? null : pontoReferencia;
+        }
+
+        // Parameterless ctor para EF
+        private Localizacao()
+        {
+            Cidade = string.Empty;
+            Pais = string.Empty;
+            Coordenada = new Coordenada(0.0, 0.0);
+            Precisao = new Comprimento(0.0, UnidadeComprimento.Metro);
+            PontoReferencia = null;
         }
     }
 }

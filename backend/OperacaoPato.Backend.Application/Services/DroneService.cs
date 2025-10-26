@@ -3,7 +3,7 @@ using OperacaoPato.Backend.Application.DTOs;
 using OperacaoPato.Backend.Application.Interfaces;
 using OperacaoPato.Backend.Application.Services;
 using OperacaoPato.Backend.Domain.Entities;
-using OperacaoPato.Domain.Entities;
+using OperacaoPato.Backend.Domain.ValueObjects;
 
 namespace OperacaoPato.Backend.Application.Services
 {
@@ -46,12 +46,6 @@ namespace OperacaoPato.Backend.Application.Services
             return result;
         }
 
-        // Método existente mantido: retorna entidade de domínio
-        public async Task<Drone> CadastrarDroneAsync(DroneDto droneDto)
-        {
-            return await CreateInternalAsync(droneDto);
-        }
-
         public async Task<bool> ApagarDroneAsync(string numeroSerie)
         {
             if (string.IsNullOrWhiteSpace(numeroSerie))
@@ -75,11 +69,21 @@ namespace OperacaoPato.Backend.Application.Services
             if (existente)
                 throw new InvalidOperationException($"Já existe um drone com número de série {droneDto.NumeroSerie}");
 
-            var drone = new Drone(
+            // Criar níveis de recursos padrão
+            var bateria = new NivelRecurso(100, 100, "%");
+            var combustivel = new NivelRecurso(100, 100, "%");
+            var integridade = new NivelRecurso(100, 100, "%");
+            var posicaoInicial = new Coordenada(0, 0);
+
+            var drone = new DroneOperacional(
                 droneDto.NumeroSerie,
                 droneDto.Marca,
                 droneDto.Fabricante,
-                droneDto.PaisOrigem);
+                droneDto.PaisOrigem,
+                bateria,
+                combustivel,
+                integridade,
+                posicaoInicial);
 
             return await _droneRepository.AdicionarAsync(drone);
         }

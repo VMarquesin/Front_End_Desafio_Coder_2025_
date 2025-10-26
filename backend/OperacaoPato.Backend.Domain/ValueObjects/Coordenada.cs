@@ -4,8 +4,8 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
 {
     public sealed class Coordenada
     {
-        public double Latitude { get; }
-        public double Longitude { get; }
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
 
         public Coordenada(double latitude, double longitude)
         {
@@ -14,6 +14,13 @@ namespace OperacaoPato.Backend.Domain.ValueObjects
 
             Latitude = latitude;
             Longitude = longitude;
+        }
+
+        // Parameterless ctor para EF
+        private Coordenada()
+        {
+            Latitude = 0.0;
+            Longitude = 0.0;
         }
     }
 }

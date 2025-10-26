@@ -2,7 +2,7 @@ namespace OperacaoPato.Backend.Application.DTOs
 {
     public class PatoDto
     {
-        public string DroneNumeroSerie { get; set; }
+        public string DroneNumeroSerie { get; set; } = string.Empty;
 
         // Altura
         public double AlturaValor { get; set; }
@@ -20,17 +20,17 @@ namespace OperacaoPato.Backend.Application.DTOs
         public string? PontoReferencia { get; set; } = default;
 
         public double Precisao { get; set; }
-        public string PrecisaoUnidade { get; set; }
+        public string PrecisaoUnidade { get; set; } = "Metro";
 
         // Estado fisiológico
-        public string Status { get; set; } // StatusHibernacao como string ("Ativo", "Transe", "HibernacaoProfunda", etc.)
+        public string Status { get; set; } = "Ativo"; // StatusHibernacao como string ("Ativo", "Transe", "HibernacaoProfunda", etc.)
         public int? BatimentosPorMinuto { get; set; }
 
         // Mutação e poder
         public int QuantidadeMutacoes { get; set; }
         public string PoderNome { get; set; } = default!;   // Ajustar conforme SuperPoder
-        public string PoderDescricao { get; set; }                // Ajustar conforme SuperPoder
-        public string PoderClassificacao { get; set; }     
+        public string PoderDescricao { get; set; } = string.Empty;  // Ajustar conforme SuperPoder
+        public string PoderClassificacao { get; set; } = string.Empty;
         // Data da coleta (opcional; default = UtcNow)
         public DateTime? DataColetaUtc { get; set; }
     }

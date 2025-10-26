@@ -5,7 +5,6 @@ using OperacaoPato.Backend.Domain.Entities;
 using OperacaoPato.Backend.Shared.Exceptions;
 using OperacaoPato.Backend.Domain.ValueObjects;
 using OperacaoPato.Backend.Domain.Enums;
-using OperacaoPato.Domain.ValueObjects;
 
 namespace OperacaoPato.Backend.Application.UseCases.CadastrarPato
 {
@@ -114,9 +113,10 @@ namespace OperacaoPato.Backend.Application.UseCases.CadastrarPato
         {
             var map = new Dictionary<string, UnidadeMassa>(StringComparer.OrdinalIgnoreCase)
             {
+                ["mg"] = UnidadeMassa.Miligrama,
                 ["g"]  = UnidadeMassa.Grama,
-                ["lb"] = UnidadeMassa.Libra
-                // se o domínio tiver 'Libra' adicione: ["lb"] = UnidadeMassa.Libra
+                ["kg"] = UnidadeMassa.Quilograma,
+                ["t"]  = UnidadeMassa.Tonelada
             };
 
             if (map.TryGetValue(value, out var unidade))

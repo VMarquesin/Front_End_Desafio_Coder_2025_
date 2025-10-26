@@ -2,7 +2,8 @@ using FluentValidation;
 using OperacaoPato.Backend.Application.DTOs;
 using OperacaoPato.Backend.Application.Interfaces;
 using OperacaoPato.Backend.Shared.Exceptions;
-using OperacaoPato.Domain.Entities;
+using OperacaoPato.Backend.Domain.Entities;
+using OperacaoPato.Backend.Domain.ValueObjects;
 
 namespace OperacaoPato.Backend.Application.UseCases.CadastrarDrone
 {
@@ -25,7 +26,21 @@ namespace OperacaoPato.Backend.Application.UseCases.CadastrarDrone
             if (exists)
                 throw new InvalidOperationException($"Já existe um drone com número de série {input.NumeroSerie}");
 
-            var entity = new Drone(input.NumeroSerie, input.Marca, input.Fabricante, input.PaisOrigem);
+            // Criar níveis de recursos padrão
+            var bateria = new NivelRecurso(100, 100, "%");
+            var combustivel = new NivelRecurso(100, 100, "%");
+            var integridade = new NivelRecurso(100, 100, "%");
+            var posicaoInicial = new Coordenada(0, 0);
+
+            var entity = new DroneOperacional(
+                input.NumeroSerie,
+                input.Marca,
+                input.Fabricante,
+                input.PaisOrigem,
+                bateria,
+                combustivel,
+                integridade,
+                posicaoInicial);
             var created = await _repo.AdicionarAsync(entity);
 
             return new DroneDto
