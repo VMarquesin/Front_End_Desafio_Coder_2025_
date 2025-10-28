@@ -56,33 +56,76 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
       setIsLoading(true);
       setError(null);
 
+      // Validações mínimas exigidas pela API
+      if (!pais || !cidade) {
+         setIsLoading(false);
+         setError("Preencha País e Cidade (obrigatórios).");
+         return;
+      }
+
+      // Mapeia o status selecionado para o enum esperado pelo backend
+      const statusMap = {
+         "desperto": "Desperto",
+         "em transe": "Transe",
+         "hibernacao profunda": "HibernacaoProfunda",
+      };
+      const statusBackend = statusMap[String(statusHibernacao).toLowerCase()] || statusHibernacao;
+
+      // Normaliza unidades aceitas pelo backend
+      const alturaUnidadeBackend = ["m", "cm", "km"].includes(String(alturaUnidade).toLowerCase())
+         ? alturaUnidade
+         : "cm";
+      const pesoUnidadeBackend = String(pesoUnidade).toLowerCase() === "libras" ? "kg" : pesoUnidade;
+      // Regras mínimas de negócio
+      const nAltura = parseFloat(alturaVal);
+      const nPeso = parseFloat(pesoVal);
+      const nLat = parseFloat(latitude);
+      const nLng = parseFloat(longitude);
+      const nPrec = parseFloat(precisaoVal);
+
+      if (!isFinite(nAltura) || nAltura <= 0) { setIsLoading(false); setError('Altura deve ser maior que zero.'); return; }
+      if (!isFinite(nPeso) || nPeso <= 0) { setIsLoading(false); setError('Peso deve ser maior que zero.'); return; }
+      if (!isFinite(nLat) || nLat < -90 || nLat > 90) { setIsLoading(false); setError('Latitude deve estar entre -90 e 90.'); return; }
+      if (!isFinite(nLng) || nLng < -180 || nLng > 180) { setIsLoading(false); setError('Longitude deve estar entre -180 e 180.'); return; }
+      if (!isFinite(nPrec) || nPrec <= 0) { setIsLoading(false); setError('Precisão deve ser maior que zero.'); return; }
+
+      if (statusBackend !== 'Desperto') {
+         const nBpm = parseInt(batimentosBpm);
+         if (!Number.isInteger(nBpm) || nBpm <= 0) { setIsLoading(false); setError('Batimentos (bpm) é obrigatório e deve ser > 0 para Transe/Hibernação.'); return; }
+      }
+
+      // ValidaÃ§Ãµes mÃ­nimas exigidas pela API
+      
+
+      // Mapeia o status selecionado para o enum esperado pelo backend
+      
 
       const dadosBrutos = {
          droneNumeroSerie: droneSerial, 
-         alturaValor: parseFloat(alturaVal),
-         alturaUnidade: alturaUnidade,
-         pesoValor: parseFloat(pesoVal),
-         pesoUnidade: pesoUnidade, 
+         alturaValor: nAltura,
+         alturaUnidade: alturaUnidadeBackend,
+         pesoValor: nPeso,
+         pesoUnidade: pesoUnidadeBackend, 
          pais: pais || "",
          cidade: cidade || "",
-         latitude: parseFloat(latitude),
-         longitude: parseFloat(longitude),
+         latitude: nLat,
+         longitude: nLng,
          pontoReferencia: pontoReferencia || null,
-         precisao: parseFloat(precisaoVal), 
+         precisao: nPrec, 
          precisaoUnidade: precisaoUnidade, 
-         status: statusHibernacao, 
+         status: statusBackend, 
          batimentosPorMinuto:
-            statusHibernacao !== "Desperto" && batimentosBpm 
+            statusBackend !== "Desperto" && batimentosBpm 
                ? parseInt(batimentosBpm)
                : null,
-         quantidadeMutacoes: parseInt(qtdMutacoes), 
-         poderNome: statusHibernacao === "Desperto" ? PoderNome || "" : "", 
+         quantidadeMutacoes: qtdMutacoes !== "" ? parseInt(qtdMutacoes) : 0, 
+         poderNome: statusBackend === "Desperto" ? (superPoderNome || "Indefinido") : "Dormente", 
          poderDescricao:
-            statusHibernacao === "Desperto" ? PoderDescricao || "" : "",
+            statusBackend === "Desperto" ? (superPoderDescricao || "Indefinido") : "Dormente",
          poderClassificacao:
-            statusHibernacao === "Desperto"
-               ? PoderClassificacao || ""
-               : "",
+            statusBackend === "Desperto"
+               ? (superPoderClassificacao || "N/A")
+               : "N/A",
          dataColetaUtc: new Date().toISOString(),
       };
 
@@ -94,7 +137,7 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
          onClose();
       } catch (err) {
          console.error("Erro ao catalogar Pato:", err);
-         setError("Falha ao enviar dados. Verifique o console e a API.");
+         setError((() => { const r = err?.response; if (r?.data) { try { if (Array.isArray(r.data)) return "Erro de validação: " + r.data.join("; "); if (r.data.errors) return "Erro de validação: " + Object.values(r.data.errors).flat().join("; "); if (r.data.message) return r.data.message; return JSON.stringify(r.data); } catch { return "Falha ao enviar dados. Verifique o console e a API."; } } return "Falha ao enviar dados. Verifique o console e a API."; })());
       } finally {
          setIsLoading(false);
       }
@@ -204,7 +247,7 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
                            />
                         </div>
                         <div className={styles.formGroup}>
-                           <label>PaÃ­s</label>
+                           <label>País</label>
                            <input
                               type="text"
                               value={pais}
@@ -378,3 +421,10 @@ const CatalogModal = ({ onClose, onPatoCatalogado }) => {
 };
 
 export default CatalogModal;
+
+
+
+
+
+
+

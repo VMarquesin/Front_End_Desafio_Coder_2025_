@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OperacaoPato.Backend.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a119cefde7cc15877df3eca63728bad6d6183bd8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e5426a7322b1698f7d0a37e036e418d7f246954")]
 [assembly: System.Reflection.AssemblyProductAttribute("OperacaoPato.Backend.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OperacaoPato.Backend.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
