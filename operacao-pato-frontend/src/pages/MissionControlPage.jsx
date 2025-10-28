@@ -1,3 +1,5 @@
+// MissionControlPage.jsx (Versão Completa e Corrigida)
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
@@ -5,7 +7,32 @@ import StatusBar from "../components/StatusBar";
 import CombatLog from "../components/CombatLog";
 import styles from "./MissionControlPage.module.css";
 
+// 1. FUNÇÃO AUXILIAR (NECESSÁRIA)
+const formatarDroneData = (apiData) => {
+   if (!apiData) return null;
+   return {
+      numeroSerie: apiData.numeroSerie,
+      integridade: apiData.integridadePorcentagem,
+      integridade_max: 100,
+      bateria: apiData.bateriaPorcentagem,
+      bateria_max: 100,
+      combustivel: apiData.combustivelPorcentagem,
+      combustivel_max: 100,
+      latitude: apiData.latitude,
+      longitude: apiData.longitude,
+      podeOperar: apiData.podeOperar,
+   };
+};
 
+// 2. CONSTANTES DO JOGO
+const ACOES_DISPONIVEIS = [
+   { id: "ataque_padrao", nome: "Ataque Padrão" },
+   { id: "ataque_pedra", nome: "Ataque Aéreo" },
+   { id: "scan_fraqueza", nome: "Escanear Fraqueza" },
+   { id: "mover", nome: "Mover Drone" },
+];
+
+// 3. SIMULAÇÃO DE COMBATE (COM CONTRA-ATAQUE)
 const simularTurnoCombate = (acaoId, patoAtual) => {
    const log = [];
    let novoPato = { ...patoAtual };
@@ -26,46 +53,34 @@ const simularTurnoCombate = (acaoId, patoAtual) => {
                : Math.floor(Math.random() * 10) + 5;
          log.push(`Drone usou ${acaoNome} causando ${danoCausado} de dano!`);
          break;
-      case "scan_fraqueza":
-         const fraquezas = [
-            "Chocolate",
-            "Ruído metálico",
-            "Ondas sonoras agudas",
-            "Efeito espelho",
-            "Presença de crianças em festas",
-         ];
-         log.push(
-            `Scan: Fraqueza detectada - ${
-               fraquezas[Math.floor(Math.random() * fraquezas.length)]
-            }.`
-         );
-         break;
       default:
-         log.push(`Ação '${acaoNome}' executada.`);
+         log.push(`Ação '${acaoNome}' executada (sem dano).`);
    }
 
    if (danoCausado > 0) {
       novoPato.integridade = Math.max(0, novoPato.integridade - danoCausado);
    }
+
+   // --- LÓGICA DE CONTRA-ATAQUE DO PATO ---
    if (
-      Math.random() < 0.2 &&
+      Math.random() < 0.4 && // 40% de chance de revidar
       acaoId !== "scan_fraqueza" &&
-      acaoId !== "mover"
+      acaoId !== "mover" &&
+      novoPato.integridade > 0 &&
+      novoPato.status === "Desperto"
    ) {
-      const defesas = [
-         "Gerou escudo!",
-         "Ativou iscas!",
-         "Teleportou brigadeiros!",
-         "Fumaça!",
-         "Sinal robótico!",
+      const ataquesPato = [
+         "Investida Quack!",
+         "Onda Sônica!",
+         "Projétil de Pão!",
       ];
-      log.push(
-         `🌀 Defesa aleatória ativada: ${
-            defesas[Math.floor(Math.random() * defesas.length)]
-         }`
-      );
+      const ataque =
+         ataquesPato[Math.floor(Math.random() * ataquesPato.length)];
+      log.push(`ALERTA! O Pato revidou com ${ataque}!`);
    }
-   if (novoPato.integridade <= 0) {
+   // --- FIM DA LÓGICA ---
+
+   if (novoPato.integridade <= 0 && statusJogo !== "vitoria") {
       statusJogo = "vitoria";
       log.push(">> ALVO NEUTRALIZADO! <<");
    }
@@ -73,24 +88,17 @@ const simularTurnoCombate = (acaoId, patoAtual) => {
    return {
       novoPatoStats: novoPato,
       logEntries: log,
-      status: statusJogo, 
+      status: statusJogo,
    };
 };
 
-const ACOES_DISPONIVEIS = [
-   { id: "ataque_padrao", nome: "Ataque Padrão" },
-   { id: "ataque_pedra", nome: "Ataque Aéreo" },
-   { id: "scan_fraqueza", nome: "Escanear Fraqueza" },
-   { id: "mover", nome: "Mover Drone" },
-];
-
-
+// 4. COMPONENTE PRINCIPAL
 const MissionControlPage = () => {
    const { patoId } = useParams();
    const navigate = useNavigate();
 
-   const [droneStats, setDroneStats] = useState(null); 
-   const [patoStats, setPatoStats] = useState(null); 
+   const [droneStats, setDroneStats] = useState(null);
+   const [patoStats, setPatoStats] = useState(null);
    const [acoes, setAcoes] = useState(ACOES_DISPONIVEIS);
    const [combatLog, setCombatLog] = useState(["Iniciando conexão..."]);
    const [gameStatus, setGameStatus] = useState("carregando");
@@ -98,79 +106,67 @@ const MissionControlPage = () => {
    const [error, setError] = useState(null);
    const [isLoading, setIsLoading] = useState(true);
 
-   const numeroSerieDrone = "DRONE-001"; 
-
-   
+   // 5. FUNÇÃO DE STATUS (SIMULADA)
    const fetchDroneStatus = async (showLog = false) => {
       if (showLog)
          setCombatLog((prev) => [
             ...prev.slice(-100),
-            "Buscando status atualizado do drone...",
+            "Simulando verificação de status do drone...",
          ]);
-      try {
-         const response = await api.get(
-            `/DronesOperacionais/${numeroSerieDrone}/status`
-         );
-         const droneData = {
-            numeroSerie: response.data.numeroSerie,
-            integridade: response.data.integridadePorcentagem,
-            integridade_max: 100,
-            bateria: response.data.bateriaPorcentagem,
-            bateria_max: 100,
-            combustivel: response.data.combustivelPorcentagem,
-            combustivel_max: 100,
-            latitude: response.data.latitude,
-            longitude: response.data.longitude,
-            podeOperar: response.data.podeOperar,
-         };
-         setDroneStats(droneData); 
-         if (showLog)
-            setCombatLog((prev) => [
-               ...prev.slice(-100),
-               "Status do drone recebido.",
-            ]);
 
-         if (!droneData.podeOperar || droneData.integridade <= 0) {
-            if (gameStatus !== "derrota" && gameStatus !== "vitoria") {
-               
-               setGameStatus("derrota");
-               setCombatLog((prev) => [
-                  ...prev.slice(-100),
-                  ">> NÍVEIS CRÍTICOS OU DRONE DESTRUÍDO. Missão falhou. <<",
-               ]);
-            }
-         }
-         return droneData; 
-      } catch (err) {
-         console.error("Falha ao buscar status do drone", err);
-         setError("Erro ao comunicar com o drone.");
-         setCombatLog((prev) => [
-            ...prev.slice(-100),
-            ">> ERRO ao buscar status do drone. <<",
-         ]);
-         setGameStatus("erro");
-         return null;
-      }
+      setDroneStats((prev) => {
+         if (!prev) return null;
+         const novaBateria = Math.max(0, prev.bateria - 0.5);
+         const novoCombustivel = Math.max(0, prev.combustivel - 0.2);
+
+         const podeOperar =
+            novaBateria > 0 && novoCombustivel > 0 && prev.integridade > 0;
+
+         // (Verificação de derrota agora é centralizada no 'handleAction')
+
+         return {
+            ...prev,
+            bateria: novaBateria,
+            combustivel: novoCombustivel,
+            podeOperar: podeOperar,
+         };
+      });
+
+      return droneStats;
    };
 
+   // 6. FUNÇÃO DE INICIALIZAÇÃO (SIMULADA - LOGS LIMPOS)
    useEffect(() => {
       const iniciarMissao = async () => {
          setIsLoading(true);
          setError(null);
          setCombatLog(["Iniciando conexão..."]);
          setGameStatus("carregando");
-         let initialDroneData = null; 
 
          try {
-            initialDroneData = await fetchDroneStatus(true);
-            if (!initialDroneData)
-               throw new Error(
-                  "Não foi possível obter status inicial do drone."
-               );
-            if (!initialDroneData.podeOperar) {
-               throw new Error("Drone inicializou inoperante.");
-            }
+            // 1. SIMULAR O DRONE
+            setCombatLog((prev) => [
+               ...prev.slice(-100),
+               `Solicitando drone para o alvo ${patoId}...`,
+            ]);
 
+            const initialDroneData = formatarDroneData({
+               numeroSerie: "DRONE-SIM-001",
+               bateriaPorcentagem: 100,
+               combustivelPorcentagem: 100,
+               integridadePorcentagem: 100,
+               latitude: -23.5505,
+               longitude: -46.6333,
+               podeOperar: true,
+            });
+
+            setDroneStats(initialDroneData);
+            setCombatLog((prev) => [
+               ...prev.slice(-100),
+               `Drone ${initialDroneData.numeroSerie} alocado.`,
+            ]);
+
+            // 2. BUSCAR DADOS DO PATO
             const patoResponse = await api.get(`/patos/${patoId}`);
             const patoDataApi = patoResponse.data;
             const patoDataInicial = {
@@ -178,10 +174,10 @@ const MissionControlPage = () => {
                nome:
                   patoDataApi.pontoReferencia ||
                   `Pato ${patoId.substring(0, 8)}`,
-               integridade: 150, 
+               integridade: 150,
                integridade_max: 150,
                super_poder: patoDataApi.poderNome,
-               status: patoDataApi.status, 
+               status: patoDataApi.status,
             };
             setPatoStats(patoDataInicial);
             setCombatLog((prev) => [
@@ -189,16 +185,19 @@ const MissionControlPage = () => {
                `Alvo ${patoDataInicial.nome} localizado.`,
             ]);
 
+            // 3. INICIAR O JOGO
             setGameStatus("em_andamento");
          } catch (err) {
-            console.error("Falha ao iniciar missão", err);
+            console.error("Falha ao buscar dados do pato", err);
+            const errorMsg = err.response
+               ? JSON.stringify(err.response.data)
+               : err.message;
             setCombatLog((prev) => [
                ...prev.slice(-100),
-               `ERRO CRÍTICO: ${err.message}`,
+               `ERRO CRÍTICO AO BUSCAR DADOS DO ALVO: ${errorMsg}`,
             ]);
-            setError(err.message || "Falha ao buscar dados iniciais.");
+            setError(err.message || "Falha ao buscar dados iniciais do Pato.");
             setGameStatus("erro");
-            if (initialDroneData) setDroneStats(initialDroneData);
          } finally {
             setIsLoading(false);
          }
@@ -207,8 +206,9 @@ const MissionControlPage = () => {
       iniciarMissao();
    }, [patoId]);
 
+   // 7. FUNÇÃO DE AÇÕES (SIMULADA - CORRIGIDA VITÓRIA/DERROTA)
    const handleAction = async (acaoId) => {
-      if (isProcessing || gameStatus !== "em_andamento") return;
+      if (isProcessing || gameStatus !== "em_andamento" || !droneStats) return;
       setIsProcessing(true);
       setError(null);
 
@@ -216,113 +216,142 @@ const MissionControlPage = () => {
       const acaoNome = acao?.nome || acaoId;
       setCombatLog((prev) => [
          ...prev.slice(-100),
-         `Executando: ${acaoNome}...`,
+         `Executando: ${acaoNome}... (Drone: ${droneStats.numeroSerie})`,
       ]);
 
-      let logAcaoEspecifica = []; 
+      let logAcaoEspecifica = [];
+      let gastoBateria = 2;
+      let gastoCombustivel = 1;
+      let danoDrone = 0; // Dano que o drone vai sofrer
+      let patoMorreu = false; // Flag de vitória
 
       try {
          if (acaoId === "mover") {
-            const moveData = {
-               latitudeDestino: (droneStats?.latitude || 0) + 0.001,
-               longitudeDestino: (droneStats?.longitude || 0) + 0.001,
-               velocidadeAlvo: 50,
-               altitudeAlvo: droneStats?.altitudeAtual || 50,
-            };
-            await api.post(
-               `/DronesOperacionais/${numeroSerieDrone}/mover`,
-               moveData
+            gastoBateria = 5;
+            gastoCombustivel = 3;
+            const novaLat = (droneStats?.latitude || 0) + 0.001;
+            const novaLon = (droneStats?.longitude || 0) + 0.001;
+
+            setDroneStats((prev) => ({
+               ...prev,
+               latitude: novaLat,
+               longitude: novaLon,
+            }));
+            logAcaoEspecifica.push(
+               `Movimento simulado para (${novaLat.toFixed(
+                  4
+               )}, ${novaLon.toFixed(4)}).`
             );
-            logAcaoEspecifica.push("Comando de movimento enviado com sucesso.");
          } else if (acaoId === "scan_fraqueza") {
-            try {
-               const analysisResponse = await api.post(
-                  `/DronesOperacionais/${numeroSerieDrone}/analisar-pato/${patoId}`
-               );
-               logAcaoEspecifica.push("--- Relatório de Análise ---");
-               if (
-                  analysisResponse.data &&
-                  Array.isArray(analysisResponse.data) &&
-                  analysisResponse.data.length > 0
-               ) {
-                  analysisResponse.data.forEach((item) => {
-                     logAcaoEspecifica.push(
-                        `Tipo: ${item.tipo} | Efet.: ${
-                           item.efetividade
-                        }% | Tática: ${
-                           item.taticasRecomendadas?.join(", ") || "N/A"
-                        }`
-                     );
-                  });
-               } else {
-                  logAcaoEspecifica.push("Análise inconclusiva.");
-               }
-               logAcaoEspecifica.push("--------------------------");
-            } catch (scanErr) {
-               console.warn(
-                  "API /analisar-pato não encontrada ou falhou, simulando scan:",
-                  scanErr
-               );
-               const fraquezas = [
-                  "Chocolate",
-                  "Ruído",
-                  "Ondas agudas",
-                  "Espelho",
-                  "Crianças",
-               ];
-               logAcaoEspecifica.push(
-                  `Scan simulado: Fraqueza - ${
-                     fraquezas[Math.floor(Math.random() * fraquezas.length)]
-                  }.`
-               );
-            }
+            gastoBateria = 4;
+            gastoCombustivel = 0.5;
+            const fraquezas = [
+               "Chocolate",
+               "Ruído",
+               "Ondas agudas",
+               "Espelho",
+               "Crianças",
+            ];
+            logAcaoEspecifica.push(
+               `Scan simulado: Fraqueza - ${
+                  fraquezas[Math.floor(Math.random() * fraquezas.length)]
+               }.`
+            );
+            logAcaoEspecifica.push("--------------------------");
          } else {
+            // --- AÇÕES DE COMBATE ---
+            gastoBateria = 3;
+            gastoCombustivel = 1;
+
             const resultadoTurnoPato = simularTurnoCombate(acaoId, patoStats);
             logAcaoEspecifica.push(...resultadoTurnoPato.logEntries);
-            setPatoStats(resultadoTurnoPato.novoPatoStats); 
+
+            setPatoStats(resultadoTurnoPato.novoPatoStats);
+
             const logContemAlerta = resultadoTurnoPato.logEntries.some((log) =>
                log.startsWith("ALERTA!")
             );
+
             if (logContemAlerta && patoStats.status === "Desperto") {
-               const danoSimulado = Math.floor(Math.random() * 15) + 5; 
-               const percentualDano = (danoSimulado / 100) * 100; 
-               try {
-                  await api.post(
-                     `/DronesOperacionais/${numeroSerieDrone}/registrar-dano`,
-                     { percentualDano: Math.max(1, percentualDano) }
-                  );
-                  logAcaoEspecifica.push(
-                     `Dano recebido (${percentualDano.toFixed(
-                        0
-                     )}%) registrado na API.`
-                  );
-               } catch (danoErr) {}
+               const danoSimulado = Math.floor(Math.random() * 15) + 5;
+               danoDrone = Math.max(1, (danoSimulado / 100) * 100);
+               logAcaoEspecifica.push(
+                  `ALERTA: Drone sofreu ${danoDrone.toFixed(0)}% de dano!`
+               );
             }
 
-            if (resultadoTurnoPato.status !== gameStatus) {
-               setGameStatus(resultadoTurnoPato.status);
+            if (resultadoTurnoPato.status === "vitoria") {
+               patoMorreu = true;
             }
          }
 
-         setCombatLog((prev) => [...prev.slice(-100), ...logAcaoEspecifica]); 
-         await fetchDroneStatus(false); 
+         setCombatLog((prev) => [...prev.slice(-100), ...logAcaoEspecifica]);
       } catch (err) {
-         console.error(`Erro ao executar ação ${acaoId}:`, err);
-         const errorMsg = `>> Falha ao executar ${acaoNome}. <<`;
+         console.error(`Erro ao simular ação ${acaoId}:`, err);
+         const errorMsg = `>> Falha ao simular ${acaoNome}. <<`;
          setCombatLog((prev) => [...prev.slice(-100), errorMsg]);
-         setError(`Falha ao executar ${acaoNome}.`);
+         setError(`Falha ao simular ${acaoNome}.`);
       } finally {
-         await new Promise((res) => setTimeout(res, 300));
+         // --- BLOCO DE VERIFICAÇÃO FINAL ---
+
+         // 'gameStatus' aqui é o estado ANTES do 'setGameStatus'
+         const statusAtual = gameStatus;
+
+         setDroneStats((prev) => {
+            const novoDrone = { ...prev };
+            novoDrone.bateria = Math.max(0, prev.bateria - gastoBateria);
+            novoDrone.combustivel = Math.max(
+               0,
+               prev.combustivel - gastoCombustivel
+            );
+            novoDrone.integridade = Math.max(0, prev.integridade - danoDrone);
+
+            const podeOperar =
+               novoDrone.bateria > 0 &&
+               novoDrone.combustivel > 0 &&
+               novoDrone.integridade > 0;
+            novoDrone.podeOperar = podeOperar;
+
+            // Verifica o estado DO JOGO
+            if (patoMorreu && statusAtual === "em_andamento") {
+               setGameStatus("vitoria");
+            } else if (
+               !podeOperar &&
+               statusAtual === "em_andamento" &&
+               !patoMorreu
+            ) {
+               setGameStatus("derrota");
+            }
+
+            return novoDrone;
+         });
+
          setIsProcessing(false);
       }
    };
 
+   // 8. RENDERIZAÇÃO (JSX)
+
    if (isLoading) {
-      /* ... JSX Loading ... */
+      return (
+         <div className={styles.loadingContainer}>
+            <h1>Carregando Missão...</h1>
+         </div>
+      );
    }
+
    if (error && gameStatus === "erro") {
-      /* ... JSX Erro ... */
+      return (
+         <div className={styles.loadingContainer}>
+            <h1 style={{ color: "var(--color-danger)" }}>ERRO NA MISSÃO</h1>
+            <p>{error}</p>
+            <button onClick={() => navigate("/dashboard/patopedia")}>
+               Voltar
+            </button>
+         </div>
+      );
    }
+
    if (!droneStats || !patoStats) {
       return (
          <div className={styles.loadingContainer}>
@@ -337,7 +366,15 @@ const MissionControlPage = () => {
       <div className={styles.missionContainer}>
          {/* Overlays Vitória/Derrota */}
          {gameStatus === "vitoria" && (
-            <div className={styles.endGameOverlay}> {/* ... */} </div>
+            <div className={styles.endGameOverlay}>
+               <h1 className={styles.vitoria}>ALVO NEUTRALIZADO</h1>
+               <p>Missão concluída com sucesso!</p>
+               <div className={styles.endGameButtons}>
+                  <button onClick={() => navigate("/dashboard/patopedia")}>
+                     Voltar
+                  </button>
+               </div>
+            </div>
          )}
          {gameStatus === "derrota" && (
             <div className={styles.endGameOverlay}>
@@ -348,7 +385,9 @@ const MissionControlPage = () => {
                      : "O drone foi destruído."}
                </p>
                <div className={styles.endGameButtons}>
-                  <button onClick={() => navigate("/patopedia")}>Voltar</button>
+                  <button onClick={() => navigate("/dashboard/patopedia")}>
+                     Voltar
+                  </button>
                   <button
                      className={styles.retryButtonEnd}
                      onClick={() => window.location.reload()}
@@ -362,7 +401,7 @@ const MissionControlPage = () => {
          {/* Painéis de Status */}
          <div className={styles.statusPanels}>
             <div className={styles.panel}>
-               <h2>DRONE: {numeroSerieDrone}</h2>
+               <h2>DRONE: {droneStats.numeroSerie}</h2>
                <StatusBar
                   label="Integridade"
                   current={droneStats.integridade}
@@ -438,7 +477,7 @@ const MissionControlPage = () => {
                   </button>
                ))}
             </div>
-            {/* Botão Tentar Novamente */}
+            {/* Botão Tentar Novamente (visível em erro/fim) */}
             <button
                className={styles.retryButton}
                onClick={() => window.location.reload()}

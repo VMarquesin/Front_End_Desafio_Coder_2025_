@@ -22,7 +22,6 @@ const LandingPage = () => {
     const navigate = useNavigate();
 
     const handleAccess = () => {
-        // Navega para a rota do dashboard principal (ajuste se necessário)
         navigate('/dashboard'); 
     };
 
@@ -39,7 +38,6 @@ const LandingPage = () => {
                     Aceder ao Sistema
                 </button>
             </div>
-             {/* Efeito Opcional: Linhas de fundo */}
              <div className={styles.bgLines}>
                  <div className={styles.line}></div>
                  <div className={styles.line}></div>

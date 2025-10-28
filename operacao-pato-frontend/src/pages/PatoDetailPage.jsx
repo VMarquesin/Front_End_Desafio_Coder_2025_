@@ -203,7 +203,7 @@ const PatoDetailPage = () => {
                </div>
             )}
 
-            {/* Box 4: Sequência de DNA - VERIFIQUE SE A API RETORNA ISSO */}
+            {/* Box 4: Sequência de DNA */}
             {pato.sequenciaDna && (
                <div className={`${styles.infoBox} ${styles.dnaBox}`}>
                   <h2>
@@ -225,9 +225,12 @@ const PatoDetailPage = () => {
             )}
          </div>
 
-         {/* O BOTÃO MISSÃO DE CAPTURA */}
+         {/* BOTÃO MISSÃO DE CAPTURA */}
          {pato.status === "Desperto" && (
-            <Link to={`/missao/${pato.id}`} className={styles.missionButton}>
+            <Link
+               to={`/dashboard/missao/${pato.id}`}
+               className={styles.missionButton}
+            >
                INICIAR MISSÃO DE CAPTURA
             </Link>
          )}
